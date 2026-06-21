@@ -755,6 +755,336 @@ body {
 }
 
 .pulse { animation: pulse 2s infinite; }
+
+/* === RADAR CHART === */
+.radar-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.radar-wrapper {
+  position: relative;
+  width: 320px;
+  height: 320px;
+}
+
+.radar-wrapper canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* === MATCH SECTION === */
+.match-section {
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.match-section h3 {
+  font-size: 14px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.match-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.match-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+
+.match-item:hover {
+  border-color: var(--border-active);
+  background: rgba(201, 169, 110, 0.05);
+}
+
+.match-item.match-self {
+  border-color: var(--gold);
+  background: rgba(201, 169, 110, 0.1);
+}
+
+.match-rank {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text-muted);
+  width: 24px;
+  text-align: center;
+}
+
+.match-type {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--gold);
+  width: 48px;
+}
+
+.match-name {
+  font-size: 13px;
+  color: var(--text-dim);
+  flex: 1;
+}
+
+.match-bar-outer {
+  width: 120px;
+  height: 6px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.match-bar-inner {
+  height: 100%;
+  border-radius: 100px;
+  background: linear-gradient(90deg, var(--accent-teal), var(--gold));
+  transition: width 1s ease;
+}
+
+.match-pct {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--text-dim);
+  width: 42px;
+  text-align: right;
+}
+
+/* === HISTORY SECTION === */
+.history-section {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.history-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.history-section .history-subtitle {
+  font-size: 14px;
+  color: var(--text-dim);
+  margin-bottom: 32px;
+}
+
+.history-empty {
+  padding: 48px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+.history-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.history-card:hover {
+  border-color: var(--border-active);
+  background: rgba(201, 169, 110, 0.05);
+}
+
+.history-card .hc-type {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 2px;
+  width: 56px;
+}
+
+.history-card .hc-name {
+  font-size: 14px;
+  color: var(--text);
+  flex: 1;
+}
+
+.history-card .hc-date {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: right;
+}
+
+.history-card .hc-delete {
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: var(--transition);
+  font-size: 14px;
+  background: none;
+  border: none;
+}
+
+.history-card .hc-delete:hover {
+  color: var(--accent-rose);
+}
+
+/* === SHARE CARD (hidden, for image generation) === */
+#share-card {
+  position: fixed;
+  left: -9999px;
+  top: 0;
+  width: 600px;
+  padding: 40px;
+  background: #0a0e17;
+  color: #e8e4dd;
+  font-family: 'Noto Sans SC', -apple-system, sans-serif;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 0 60px rgba(201, 169, 110, 0.3);
+  border: 2px solid rgba(201, 169, 110, 0.2);
+  z-index: -1;
+}
+
+#share-card .sc-badge {
+  display: inline-block;
+  padding: 4px 16px;
+  border: 1px solid rgba(201, 169, 110, 0.4);
+  border-radius: 100px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #c9a96e;
+  margin-bottom: 20px;
+}
+
+#share-card .sc-type {
+  font-family: 'Playfair Display', serif;
+  font-size: 64px;
+  font-weight: 900;
+  letter-spacing: 8px;
+  background: linear-gradient(135deg, #e0c78a, #c9a96e, #8b7348);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+#share-card .sc-name {
+  font-size: 18px;
+  color: #e8e4dd;
+  margin-bottom: 4px;
+}
+
+#share-card .sc-nickname {
+  font-size: 13px;
+  color: #8a8780;
+  font-style: italic;
+  margin-bottom: 24px;
+}
+
+#share-card .sc-dims {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+  text-align: left;
+  padding: 0 40px;
+}
+
+#share-card .sc-dim-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+}
+
+#share-card .sc-dim-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  color: #c9a96e;
+  width: 24px;
+  text-align: center;
+}
+
+#share-card .sc-dim-bar-track {
+  flex: 1;
+  height: 6px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+#share-card .sc-dim-bar-fill {
+  height: 100%;
+  border-radius: 100px;
+}
+
+#share-card .sc-dim-pct {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: #8a8780;
+  width: 36px;
+  text-align: right;
+}
+
+#share-card .sc-footer {
+  font-size: 11px;
+  color: #5a5752;
+  letter-spacing: 1px;
+}
+
+#share-card .sc-qr {
+  margin-top: 16px;
+  font-size: 10px;
+  color: #5a5752;
+}
+
+/* === Toast notification === */
+.toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-card);
+  border: 1px solid var(--border-active);
+  color: var(--gold);
+  padding: 12px 28px;
+  border-radius: 100px;
+  font-size: 14px;
+  z-index: 1000;
+  backdrop-filter: blur(20px);
+  animation: toastIn 0.3s ease, toastOut 0.3s ease 2.2s forwards;
+  pointer-events: none;
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(16px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+@keyframes toastOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
 </style>
 </head>
 <body>
@@ -809,6 +1139,7 @@ body {
       </button>
       <div style="margin-top:24px">
         <button class="btn btn-secondary btn-sm" onclick="showAllTypes()">查看全部 16 种人格类型</button>
+        <button class="btn btn-secondary btn-sm" style="margin-left:12px" onclick="showHistory()">查看历史记录</button>
       </div>
     </div>
   </section>
@@ -844,8 +1175,20 @@ body {
   <section class="section" id="section-all-types">
     <div class="all-types-section" id="all-types-content"></div>
   </section>
+
+  <!-- HISTORY -->
+  <section class="section" id="section-history">
+    <div class="history-section" id="history-content"></div>
+  </section>
 </div>
 
+<!-- Hidden share card for image generation -->
+<div id="share-card"></div>
+
+<!-- Toast container -->
+<div id="toast-container"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script>
 // ==================== STARS BACKGROUND ====================
 (function createStars() {
@@ -992,10 +1335,235 @@ const typeData = {
   "ESFP": { name: "表演者", nickname: "充满活力的快乐使者", traits: ["热情", "乐观", "善于社交", "灵活"], desc: "ESFP 是充满活力的快乐使者，你善于制造快乐和惊喜。你热爱生活，享受当下，用你的热情感染周围的人。你天生是社交明星，善于调节气氛，让每个人都感到愉快。", strengths: ["社交能力强", "热情洋溢", "善于鼓励他人", "活在当下"], weaknesses: ["可能缺乏长远规划", "容易冲动", "不善于处理复杂问题", "有时过于追求享乐"], career: "演员、销售、导游、公关、活动策划、教练", love: "你在感情中充满热情和浪漫，喜欢用惊喜和欢乐来表达爱意。你享受和伴侣一起度过的每一个快乐时光。你需要学会在关系中保持深度和稳定性，不只追求表面的快乐。" },
 };
 
+// ==================== COMPATIBILITY DATA ====================
+// Based on cognitive function theory and letter similarity
+const compatibilityMatrix = {
+  "INTJ": { "INTJ":100,"INTP":88,"ENTJ":90,"ENTP":82,"INFJ":85,"INFP":75,"ENFJ":78,"ENFP":72,"ISTJ":62,"ISFJ":55,"ESTJ":65,"ESFJ":58,"ISTP":68,"ISFP":60,"ESTP":70,"ESFP":63 },
+  "INTP": { "INTJ":88,"INTP":100,"ENTJ":80,"ENTP":92,"INFJ":72,"INFP":85,"ENFJ":65,"ENFP":82,"ISTJ":58,"ISFJ":50,"ESTJ":52,"ESFJ":45,"ISTP":75,"ISFP":68,"ESTP":65,"ESFP":60 },
+  "ENTJ": { "INTJ":90,"INTP":80,"ENTJ":100,"ENTP":88,"INFJ":78,"INFP":65,"ENFJ":85,"ENFP":75,"ISTJ":70,"ISFJ":60,"ESTJ":82,"ESFJ":68,"ISTP":62,"ISFP":50,"ESTP":72,"ESFP":58 },
+  "ENTP": { "INTJ":82,"INTP":92,"ENTJ":88,"ENTP":100,"INFJ":75,"INFP":80,"ENFJ":72,"ENFP":85,"ISTJ":50,"ISFJ":42,"ESTJ":56,"ESFJ":48,"ISTP":68,"ISFP":62,"ESTP":72,"ESFP":65 },
+  "INFJ": { "INTJ":85,"INTP":72,"ENTJ":78,"ENTP":75,"INFJ":100,"INFP":90,"ENFJ":92,"ENFP":85,"ISTJ":52,"ISFJ":62,"ESTJ":48,"ESFJ":58,"ISTP":58,"ISFP":68,"ESTP":50,"ESFP":60 },
+  "INFP": { "INTJ":75,"INTP":85,"ENTJ":65,"ENTP":80,"INFJ":90,"INFP":100,"ENFJ":85,"ENFP":92,"ISTJ":42,"ISFJ":55,"ESTJ":38,"ESFJ":48,"ISTP":52,"ISFP":65,"ESTP":45,"ESFP":58 },
+  "ENFJ": { "INTJ":78,"INTP":65,"ENTJ":85,"ENTP":72,"INFJ":92,"INFP":85,"ENFJ":100,"ENFP":90,"ISTJ":48,"ISFJ":58,"ESTJ":55,"ESFJ":65,"ISTP":50,"ISFP":58,"ESTP":55,"ESFP":62 },
+  "ENFP": { "INTJ":72,"INTP":82,"ENTJ":75,"ENTP":85,"INFJ":85,"INFP":92,"ENFJ":90,"ENFP":100,"ISTJ":40,"ISFJ":48,"ESTJ":45,"ESFJ":52,"ISTP":55,"ISFP":62,"ESTP":58,"ESFP":68 },
+  "ISTJ": { "INTJ":62,"INTP":58,"ENTJ":70,"ENTP":50,"INFJ":52,"INFP":42,"ENFJ":48,"ENFP":40,"ISTJ":100,"ISFJ":88,"ESTJ":92,"ESFJ":80,"ISTP":82,"ISFP":68,"ESTP":75,"ESFP":62 },
+  "ISFJ": { "INTJ":55,"INTP":50,"ENTJ":60,"ENTP":42,"INFJ":62,"INFP":55,"ENFJ":58,"ENFP":48,"ISTJ":88,"ISFJ":100,"ESTJ":80,"ESFJ":92,"ISTP":68,"ISFP":82,"ESTP":60,"ESFP":75 },
+  "ESTJ": { "INTJ":65,"INTP":52,"ENTJ":82,"ENTP":56,"INFJ":48,"INFP":38,"ENFJ":55,"ENFP":45,"ISTJ":92,"ISFJ":80,"ESTJ":100,"ESFJ":85,"ISTP":75,"ISFP":58,"ESTP":82,"ESFP":68 },
+  "ESFJ": { "INTJ":58,"INTP":45,"ENTJ":68,"ENTP":48,"INFJ":58,"INFP":48,"ENFJ":65,"ENFP":52,"ISTJ":80,"ISFJ":92,"ESTJ":85,"ESFJ":100,"ISTP":62,"ISFP":75,"ESTP":68,"ESFP":82 },
+  "ISTP": { "INTJ":68,"INTP":75,"ENTJ":62,"ENTP":68,"INFJ":58,"INFP":52,"ENFJ":50,"ENFP":55,"ISTJ":82,"ISFJ":68,"ESTJ":75,"ESFJ":62,"ISTP":100,"ISFP":85,"ESTP":88,"ESFP":78 },
+  "ISFP": { "INTJ":60,"INTP":68,"ENTJ":50,"ENTP":62,"INFJ":68,"INFP":65,"ENFJ":58,"ENFP":62,"ISTJ":68,"ISFJ":82,"ESTJ":58,"ESFJ":75,"ISTP":85,"ISFP":100,"ESTP":78,"ESFP":88 },
+  "ESTP": { "INTJ":70,"INTP":65,"ENTJ":72,"ENTP":72,"INFJ":50,"INFP":45,"ENFJ":55,"ENFP":58,"ISTJ":75,"ISFJ":60,"ESTJ":82,"ESFJ":68,"ISTP":88,"ISFP":78,"ESTP":100,"ESFP":90 },
+  "ESFP": { "INTJ":63,"INTP":60,"ENTJ":58,"ENTP":65,"INFJ":60,"INFP":58,"ENFJ":62,"ENFP":68,"ISTJ":62,"ISFJ":75,"ESTJ":68,"ESFJ":82,"ISTP":78,"ISFP":88,"ESTP":90,"ESFP":100 },
+};
+
+function getCompatibility(userType) {
+  const matches = compatibilityMatrix[userType];
+  if (!matches) return [];
+  return Object.entries(matches)
+    .map(([type, score]) => ({ type, score, name: typeData[type]?.name || '', nickname: typeData[type]?.nickname || '' }))
+    .sort((a, b) => b.score - a.score);
+}
+
 // ==================== APP STATE ====================
 let currentQuestionIndex = 0;
 let answers = {}; // { questionIndex: score (1-5) }
 let quizStarted = false;
+
+// ==================== UTILITY: TOAST ====================
+function showToast(msg) {
+  const container = document.getElementById('toast-container');
+  const el = document.createElement('div');
+  el.className = 'toast';
+  el.textContent = msg;
+  container.appendChild(el);
+  setTimeout(() => el.remove(), 2600);
+}
+
+// ==================== LOCAL STORAGE ====================
+const STORAGE_KEY = 'mbti_test_history';
+
+function loadHistory() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  } catch { return []; }
+}
+
+function saveResultToHistory(type, percentages, rawScores) {
+  const history = loadHistory();
+  history.push({
+    type,
+    name: typeData[type]?.name || '',
+    nickname: typeData[type]?.nickname || '',
+    percentages,
+    rawScores,
+    timestamp: Date.now(),
+    id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+  });
+  // Keep max 20 records
+  if (history.length > 20) history.splice(0, history.length - 20);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+}
+
+function deleteHistoryItem(id) {
+  let history = loadHistory();
+  history = history.filter(h => h.id !== id);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+  renderHistory();
+}
+
+// ==================== RADAR CHART ====================
+function drawRadarChart(canvas, percentages) {
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width = 320;
+  const H = canvas.height = 320;
+  const cx = W / 2;
+  const cy = H / 2;
+  const radius = 120;
+  const levels = 5;
+  const dimKeys = ['ei', 'sn', 'tf', 'jp'];
+  const dimLabels = ['E/I 外向/内向', 'S/N 感觉/直觉', 'T/F 思考/情感', 'J/P 判断/感知'];
+  const totalDims = dimKeys.length;
+
+  ctx.clearRect(0, 0, W, H);
+
+  // Draw background grid
+  for (let level = 1; level <= levels; level++) {
+    const r = (radius / levels) * level;
+    ctx.beginPath();
+    for (let i = 0; i < totalDims; i++) {
+      const angle = (Math.PI * 2 * i) / totalDims - Math.PI / 2;
+      const x = cx + r * Math.cos(angle);
+      const y = cy + r * Math.sin(angle);
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.strokeStyle = 'rgba(201,169,110,0.12)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
+  // Draw axis lines
+  for (let i = 0; i < totalDims; i++) {
+    const angle = (Math.PI * 2 * i) / totalDims - Math.PI / 2;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + radius * Math.cos(angle), cy + radius * Math.sin(angle));
+    ctx.strokeStyle = 'rgba(201,169,110,0.15)';
+    ctx.stroke();
+  }
+
+  // Draw data polygon
+  ctx.beginPath();
+  for (let i = 0; i < totalDims; i++) {
+    const pct = percentages[dimKeys[i]] / 100;
+    const r = radius * pct;
+    const angle = (Math.PI * 2 * i) / totalDims - Math.PI / 2;
+    const x = cx + r * Math.cos(angle);
+    const y = cy + r * Math.sin(angle);
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(201,169,110,0.15)';
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(201,169,110,0.9)';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Draw data points
+  for (let i = 0; i < totalDims; i++) {
+    const pct = percentages[dimKeys[i]] / 100;
+    const r = radius * pct;
+    const angle = (Math.PI * 2 * i) / totalDims - Math.PI / 2;
+    const x = cx + r * Math.cos(angle);
+    const y = cy + r * Math.sin(angle);
+    ctx.beginPath();
+    ctx.arc(x, y, 4, 0, Math.PI * 2);
+    ctx.fillStyle = '#c9a96e';
+    ctx.fill();
+    ctx.strokeStyle = '#0a0e17';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+  }
+
+  // Draw labels
+  ctx.font = '12px "Noto Sans SC", sans-serif';
+  ctx.fillStyle = '#8a8780';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  for (let i = 0; i < totalDims; i++) {
+    const angle = (Math.PI * 2 * i) / totalDims - Math.PI / 2;
+    const labelR = radius + 28;
+    const x = cx + labelR * Math.cos(angle);
+    const y = cy + labelR * Math.sin(angle);
+    ctx.fillText(dimLabels[i], x, y);
+  }
+
+  // Draw percentage at each point
+  ctx.font = '11px "JetBrains Mono", monospace';
+  ctx.fillStyle = '#e0c78a';
+  for (let i = 0; i < totalDims; i++) {
+    const pct = percentages[dimKeys[i]] / 100;
+    const r = radius * pct + 16;
+    const angle = (Math.PI * 2 * i) / totalDims - Math.PI / 2;
+    const x = cx + r * Math.cos(angle);
+    const y = cy + r * Math.sin(angle);
+    ctx.fillText(percentages[dimKeys[i]] + '%', x, y);
+  }
+}
+
+// ==================== SHARE IMAGE CARD ====================
+function generateShareCard(type, percentages) {
+  const data = typeData[type];
+  const dimKeys = ['ei', 'sn', 'tf', 'jp'];
+  const dimMap = { ei: { left: 'E', right: 'I' }, sn: { left: 'S', right: 'N' }, tf: { left: 'T', right: 'F' }, jp: { left: 'J', right: 'P' } };
+  const colors = { ei: '#5b9a8b', sn: '#6b8db5', tf: '#c47a6b', jp: '#8b7eb5' };
+
+  const card = document.getElementById('share-card');
+  card.innerHTML = `
+    <div class="sc-badge">MYERS-BRIGGS TYPE INDICATOR</div>
+    <div class="sc-type">${type}</div>
+    <div class="sc-name">${data.name}</div>
+    <div class="sc-nickname">「${data.nickname}」</div>
+    <div class="sc-dims">
+      ${dimKeys.map(k => {
+        const pct = percentages[k];
+        const leftPct = pct;
+        const dm = dimMap[k];
+        return `
+          <div class="sc-dim-row">
+            <span class="sc-dim-label">${dm.left}</span>
+            <div class="sc-dim-bar-track">
+              <div class="sc-dim-bar-fill" style="width:${leftPct}%;background:${colors[k]};height:100%;border-radius:100px;"></div>
+            </div>
+            <span class="sc-dim-pct">${leftPct}%</span>
+            <span class="sc-dim-label">${dm.right}</span>
+          </div>
+        `;
+      }).join('')}
+    </div>
+    <div class="sc-footer">MBTI 人格探知 · ${new Date().toLocaleDateString('zh-CN')}</div>
+  `;
+
+  // Wait for fonts to render, then capture
+  setTimeout(() => {
+    html2canvas(card, {
+      backgroundColor: '#0a0e17',
+      scale: 2,
+      useCORS: true,
+      logging: false,
+    }).then(canvas => {
+      const link = document.createElement('a');
+      link.download = `MBTI_${type}_${Date.now()}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      showToast('图片已生成并开始下载！');
+    }).catch(() => {
+      showToast('生成图片失败，请重试');
+    });
+  }, 300);
+}
 
 // ==================== NAVIGATION ====================
 function showSection(id) {
@@ -1121,11 +1689,9 @@ function calculateResults() {
 
   questions.forEach((q, i) => {
     const raw = answers[i] || 3;
-    // For scoring: raw score maps to dimension letter
-    // Higher score = more of the first letter in the pair
     let adjusted = raw;
     if (q.dir === -1) {
-      adjusted = 6 - raw; // Reverse
+      adjusted = 6 - raw;
     }
     scores[q.dim] += adjusted;
     counts[q.dim]++;
@@ -1146,6 +1712,9 @@ function calculateResults() {
     percentages.tf >= 50 ? 'T' : 'F',
     percentages.jp >= 50 ? 'J' : 'P',
   ].join('');
+
+  // Save to localStorage
+  saveResultToHistory(type, percentages, scores);
 
   showSection('section-results');
   renderResults(type, percentages);
@@ -1190,6 +1759,11 @@ function renderResults(type, percentages) {
     <div class="result-type-nickname">「${data.nickname}」</div>
 
     <div class="dimension-bars">
+      <div class="radar-container">
+        <div class="radar-wrapper">
+          <canvas id="radar-canvas"></canvas>
+        </div>
+      </div>
       ${dimBarsHTML}
     </div>
 
@@ -1219,10 +1793,29 @@ function renderResults(type, percentages) {
       <p>${data.love}</p>
     </div>
 
+    <!-- Match percentages -->
+    <div class="match-section">
+      <h3>性格匹配度</h3>
+      <div class="match-list" id="match-list">
+        ${getCompatibility(type).map((m, idx) => `
+          <div class="match-item ${m.type === type ? 'match-self' : ''}" onclick="showTypeDetail('${m.type}')">
+            <span class="match-rank">${idx + 1}</span>
+            <span class="match-type">${m.type}</span>
+            <span class="match-name">${m.name} · ${m.nickname}</span>
+            <div class="match-bar-outer">
+              <div class="match-bar-inner" style="width:${m.score}%"></div>
+            </div>
+            <span class="match-pct">${m.score}%</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+
     <div class="share-section">
-      <button class="btn btn-primary" onclick="shareResult('${type}')">
-        复制结果分享
+      <button class="btn btn-primary" onclick="generateShareCard('${type}', {ei:${percentages.ei},sn:${percentages.sn},tf:${percentages.tf},jp:${percentages.jp}})">
+        生成分享卡片
       </button>
+      <button class="btn btn-secondary" style="margin-left:12px" onclick="shareResult('${type}')">复制文字分享</button>
       <button class="btn btn-secondary" style="margin-left:12px" onclick="startQuiz()">重新测试</button>
     </div>
 
@@ -1235,6 +1828,7 @@ function renderResults(type, percentages) {
 
     <div style="margin-top:24px">
       <button class="btn btn-secondary btn-sm" onclick="showAllTypes()">查看全部 16 种人格详解</button>
+      <button class="btn btn-secondary btn-sm" style="margin-left:12px" onclick="showHistory()">查看历史记录</button>
     </div>
   `;
 
@@ -1250,6 +1844,12 @@ function renderResults(type, percentages) {
       });
     });
   }, 200);
+
+  // Draw radar chart
+  setTimeout(() => {
+    const canvas = document.getElementById('radar-canvas');
+    if (canvas) drawRadarChart(canvas, percentages);
+  }, 300);
 }
 
 function showTypeDetail(type) {
@@ -1341,6 +1941,63 @@ function showAllTypes() {
 function toggleAccordion(type) {
   const el = document.getElementById('accordion-' + type);
   el.classList.toggle('open');
+}
+
+// ==================== HISTORY ====================
+function showHistory() {
+  showSection('section-history');
+  renderHistory();
+}
+
+function renderHistory() {
+  const container = document.getElementById('history-content');
+  const history = loadHistory();
+
+  if (history.length === 0) {
+    container.innerHTML = `
+      <h2>历史记录</h2>
+      <p class="history-subtitle">你的测试结果将保存在本地浏览器中</p>
+      <div class="history-empty">
+        <p>暂无测试记录</p>
+        <button class="btn btn-primary" style="margin-top:20px" onclick="startQuiz()">开始第一次测试</button>
+      </div>
+    `;
+    return;
+  }
+
+  const sorted = [...history].reverse(); // newest first
+
+  container.innerHTML = `
+    <h2>历史记录</h2>
+    <p class="history-subtitle">共 ${history.length} 条测试记录（保存在本地浏览器）</p>
+    <div class="history-list">
+      ${sorted.map(h => {
+        const d = new Date(h.timestamp);
+        const dateStr = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+        return `
+          <div class="history-card" onclick="loadHistoryResult('${h.id}')">
+            <span class="hc-type">${h.type}</span>
+            <span class="hc-name">${h.name} · ${h.nickname}</span>
+            <span class="hc-date">${dateStr}</span>
+            <button class="hc-delete" onclick="event.stopPropagation();deleteHistoryItem('${h.id}')" title="删除">✕</button>
+          </div>
+        `;
+      }).join('')}
+    </div>
+    <div style="margin-top:32px;text-align:center">
+      <button class="btn btn-primary" onclick="startQuiz()">重新测试</button>
+      <button class="btn btn-secondary btn-sm" style="margin-left:12px" onclick="showSection('section-landing')">返回首页</button>
+    </div>
+  `;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function loadHistoryResult(id) {
+  const history = loadHistory();
+  const item = history.find(h => h.id === id);
+  if (!item) return;
+  showSection('section-results');
+  renderResults(item.type, item.percentages);
 }
 
 // ==================== KEYBOARD NAVIGATION ====================
