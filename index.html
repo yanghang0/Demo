@@ -232,6 +232,95 @@ body {
   margin-top: 4px;
 }
 
+/* Version selector */
+.version-selector {
+  width: 100%;
+  max-width: 720px;
+  margin-bottom: 40px;
+}
+
+.version-title {
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.version-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.version-option {
+  position: relative;
+  padding: 22px 14px 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-card);
+  cursor: pointer;
+  transition: var(--transition);
+  backdrop-filter: blur(10px);
+  text-align: center;
+  overflow: hidden;
+}
+
+.version-option:hover {
+  border-color: var(--border-active);
+  transform: translateY(-2px);
+  background: var(--bg-card-hover);
+}
+
+.version-option.selected {
+  border-color: var(--gold);
+  background: rgba(201, 169, 110, 0.08);
+  box-shadow: 0 0 30px rgba(201, 169, 110, 0.15);
+}
+
+.version-option.selected .version-num {
+  color: var(--gold-light);
+}
+
+.version-tag {
+  position: absolute;
+  top: 10px;
+  right: -32px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+  color: #0a0e17;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 3px 36px;
+  transform: rotate(35deg);
+  text-transform: uppercase;
+}
+
+.version-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 8px;
+  transition: var(--transition);
+}
+
+.version-name {
+  font-size: 15px;
+  color: var(--text);
+  font-weight: 500;
+  margin-bottom: 6px;
+  letter-spacing: 1px;
+}
+
+.version-desc {
+  font-size: 11px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -472,7 +561,19 @@ body {
   font-size: 14px;
   color: var(--text-dim);
   font-style: italic;
+  margin-bottom: 16px;
+}
+
+.result-version-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border: 1px solid var(--border-active);
+  border-radius: 100px;
+  font-size: 12px;
+  color: var(--gold);
+  letter-spacing: 1px;
   margin-bottom: 40px;
+  background: rgba(201, 169, 110, 0.05);
 }
 
 /* Dimension bars */
@@ -740,6 +841,9 @@ body {
   .question-text { font-size: 17px; }
   .landing-stats { gap: 24px; }
   .landing h1 { font-size: 36px; }
+  .version-options { grid-template-columns: 1fr; gap: 10px; }
+  .version-num { font-size: 32px; }
+  .version-tag { right: -36px; padding: 3px 40px; }
 }
 
 /* Scrollbar */
@@ -934,6 +1038,17 @@ body {
   text-align: right;
 }
 
+.history-card .hc-version {
+  font-size: 11px;
+  color: var(--gold);
+  padding: 2px 10px;
+  border: 1px solid var(--border-active);
+  border-radius: 100px;
+  letter-spacing: 1px;
+  background: rgba(201, 169, 110, 0.05);
+  white-space: nowrap;
+}
+
 .history-card .hc-delete {
   color: var(--text-muted);
   cursor: pointer;
@@ -1107,8 +1222,8 @@ body {
           <span class="label">人格类型</span>
         </div>
         <div class="landing-stat">
-          <span class="num">208</span>
-          <span class="label">精心设计的问题</span>
+          <span class="num">3</span>
+          <span class="label">难度可选</span>
         </div>
         <div class="landing-stat">
           <span class="num">4</span>
@@ -1131,6 +1246,27 @@ body {
         <div class="dim-badge">
           <span class="dim-letter">J / P</span>
           <span class="dim-name">判断 · 感知</span>
+        </div>
+      </div>
+      <div class="version-selector">
+        <p class="version-title">选择测试版本</p>
+        <div class="version-options">
+          <div class="version-option" data-version="28" onclick="selectVersion('28')">
+            <div class="version-num">28</div>
+            <div class="version-name">快速测试</div>
+            <div class="version-desc">约 5 分钟 · 快速了解你的类型</div>
+          </div>
+          <div class="version-option selected" data-version="93" onclick="selectVersion('93')">
+            <div class="version-tag">推荐</div>
+            <div class="version-num">93</div>
+            <div class="version-name">标准测试</div>
+            <div class="version-desc">约 15 分钟 · 经典 MBTI 体验</div>
+          </div>
+          <div class="version-option" data-version="208" onclick="selectVersion('208')">
+            <div class="version-num">208</div>
+            <div class="version-name">深度测试</div>
+            <div class="version-desc">约 30 分钟 · 全面细致的分析</div>
+          </div>
         </div>
       </div>
       <button class="btn btn-primary pulse" onclick="startQuiz()">
@@ -1212,7 +1348,8 @@ body {
 // dimension: 'ei', 'sn', 'tf', 'jp'
 // direction: 1 means agree = first letter (E/S/T/J), -1 means agree = second letter (I/N/F/P)
 
-const questions = [
+// Full 208-question bank, used as the source for all versions
+const allQuestions = [
   // ============ E/I Dimension (52 questions) ============
   // --- E direction (26) ---
   { text: "在社交聚会中，你通常是活跃气氛的那个人。", dim: "ei", dir: 1 },
@@ -1491,6 +1628,43 @@ function getCompatibility(userType) {
 let currentQuestionIndex = 0;
 let answers = {}; // { questionIndex: score (1-5) }
 let quizStarted = false;
+let selectedVersion = '93'; // '28' | '93' | '208'
+let questions = []; // active question set, populated by version at quiz start
+
+// ==================== VERSION CONFIG ====================
+const VERSION_CONFIG = {
+  '28':  { name: '快速测试', perDim: { ei: 7,  sn: 7,  tf: 7,  jp: 7  }, total: 28,  time: '约 5 分钟'  },
+  '93':  { name: '标准测试', perDim: { ei: 24, sn: 24, tf: 24, jp: 21 }, total: 93,  time: '约 15 分钟' },
+  '208': { name: '深度测试', perDim: { ei: 52, sn: 52, tf: 52, jp: 52 }, total: 208, time: '约 30 分钟' },
+};
+
+function selectVersion(version) {
+  if (!VERSION_CONFIG[version]) return;
+  selectedVersion = version;
+  document.querySelectorAll('.version-option').forEach(el => {
+    el.classList.toggle('selected', el.dataset.version === version);
+  });
+}
+
+function getQuestionsForVersion(version) {
+  const cfg = VERSION_CONFIG[version];
+  if (!cfg) return allQuestions.slice();
+  if (version === '208') return allQuestions.slice();
+
+  // Build a balanced subset for the given version:
+  // - First take ceil(count/2) questions from the positive direction
+  // - Then take the remaining from the negative direction
+  const result = [];
+  ['ei', 'sn', 'tf', 'jp'].forEach(dim => {
+    const target = cfg.perDim[dim];
+    const pos = allQuestions.filter(q => q.dim === dim && q.dir === 1);
+    const neg = allQuestions.filter(q => q.dim === dim && q.dir === -1);
+    const posCount = Math.ceil(target / 2);
+    const negCount = target - posCount;
+    result.push(...pos.slice(0, posCount), ...neg.slice(0, negCount));
+  });
+  return result;
+}
 
 // ==================== UTILITY: TOAST ====================
 function showToast(msg) {
@@ -1519,6 +1693,7 @@ function saveResultToHistory(type, percentages, rawScores) {
     nickname: typeData[type]?.nickname || '',
     percentages,
     rawScores,
+    version: selectedVersion,
     timestamp: Date.now(),
     id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
   });
@@ -1644,8 +1819,9 @@ function generateShareCard(type, percentages) {
   const colors = { ei: '#5b9a8b', sn: '#6b8db5', tf: '#c47a6b', jp: '#8b7eb5' };
 
   const card = document.getElementById('share-card');
+  const v = VERSION_CONFIG[selectedVersion];
   card.innerHTML = `
-    <div class="sc-badge">MYERS-BRIGGS TYPE INDICATOR</div>
+    <div class="sc-badge">MYERS-BRIGGS TYPE INDICATOR · ${v?.name || ''} ${questions.length}题</div>
     <div class="sc-type">${type}</div>
     <div class="sc-name">${data.name}</div>
     <div class="sc-nickname">「${data.nickname}」</div>
@@ -1700,6 +1876,7 @@ function startQuiz() {
   quizStarted = true;
   currentQuestionIndex = 0;
   answers = {};
+  questions = getQuestionsForVersion(selectedVersion);
   showSection('section-quiz');
   renderQuestion();
   renderDimDots();
@@ -1880,6 +2057,7 @@ function renderResults(type, percentages) {
     <div class="result-type-badge">${type}</div>
     <div class="result-type-name">${data.name}</div>
     <div class="result-type-nickname">「${data.nickname}」</div>
+    <div class="result-version-badge">${VERSION_CONFIG[selectedVersion]?.name || ''} · ${questions.length} 题</div>
 
     <div class="dimension-bars">
       <div class="radar-container">
@@ -2009,7 +2187,8 @@ function showTypeDetail(type) {
 
 function shareResult(type) {
   const data = typeData[type];
-  const text = `我的 MBTI 人格类型是 ${type}「${data.name}」— ${data.nickname}\n\n核心特质：${data.traits.join('、')}\n适合职业：${data.career}\n\n快来测测你的人格类型吧！`;
+  const v = VERSION_CONFIG[selectedVersion];
+  const text = `我的 MBTI 人格类型是 ${type}「${data.name}」— ${data.nickname}\n（基于${v?.name || '标准版'} · ${questions.length} 题）\n\n核心特质：${data.traits.join('、')}\n适合职业：${data.career}\n\n快来测测你的人格类型吧！`;
   navigator.clipboard.writeText(text).then(() => {
     alert('结果已复制到剪贴板！分享给你的朋友吧。');
   }).catch(() => {
@@ -2097,10 +2276,12 @@ function renderHistory() {
       ${sorted.map(h => {
         const d = new Date(h.timestamp);
         const dateStr = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+        const vName = VERSION_CONFIG[h.version]?.name || '';
         return `
           <div class="history-card" onclick="loadHistoryResult('${h.id}')">
             <span class="hc-type">${h.type}</span>
             <span class="hc-name">${h.name} · ${h.nickname}</span>
+            <span class="hc-version">${vName}</span>
             <span class="hc-date">${dateStr}</span>
             <button class="hc-delete" onclick="event.stopPropagation();deleteHistoryItem('${h.id}')" title="删除">✕</button>
           </div>
@@ -2119,6 +2300,14 @@ function loadHistoryResult(id) {
   const history = loadHistory();
   const item = history.find(h => h.id === id);
   if (!item) return;
+  if (item.version && VERSION_CONFIG[item.version]) {
+    selectedVersion = item.version;
+    document.querySelectorAll('.version-option').forEach(el => {
+      el.classList.toggle('selected', el.dataset.version === item.version);
+    });
+  }
+  // Rebuild the matching question set so progress / dots still match the version
+  questions = getQuestionsForVersion(selectedVersion);
   showSection('section-results');
   renderResults(item.type, item.percentages);
 }
