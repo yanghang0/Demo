@@ -1972,13 +1972,13 @@ body {
       </div>
       <div style="margin-top:24px;padding:24px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);max-width:720px;width:100%;">
         <h3 style="font-family:'Playfair Display',serif;color:var(--gold);font-size:18px;margin-bottom:12px;">✦ 今日箴言 · 在测试之前 ✦</h3>
-        ${renderDailyWisdom('INTJ')}
+        <div id="landing-daily-wisdom"></div>
         <p style="margin-top:12px;font-size:11px;color:var(--text-muted);text-align:center;">—— 测试后你将看到专属你的箴言 ——</p>
       </div>
       <div style="margin-top:24px;width:100%;max-width:720px;">
         <h3 style="font-family:'Playfair Display',serif;color:var(--gold);font-size:18px;text-align:center;margin-bottom:8px;">人物志 · 十六种灵魂</h3>
         <p style="text-align:center;font-size:12px;color:var(--text-dim);margin-bottom:16px;">点击任意角色深入了解其完整画像</p>
-        ${renderTypeGallery()}
+        <div id="landing-type-gallery"></div>
       </div>
     </div>
   </section>
@@ -3840,6 +3840,15 @@ document.addEventListener('keydown', (e) => {
     }
   }
 });
+
+// ==================== LANDING PAGE STATIC SECTIONS ====================
+// 填充首页静态区块（在静态 HTML 中无法用模板字符串，所以用脚本注入）
+(function fillLandingStaticSections() {
+  const wisdomEl = document.getElementById('landing-daily-wisdom');
+  if (wisdomEl) wisdomEl.innerHTML = renderDailyWisdom('INTJ');
+  const galleryEl = document.getElementById('landing-type-gallery');
+  if (galleryEl) galleryEl.innerHTML = renderTypeGallery();
+})();
 </script>
 </body>
 </html>
