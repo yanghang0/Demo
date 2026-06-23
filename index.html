@@ -846,6 +846,699 @@ body {
   .version-tag { right: -36px; padding: 3px 40px; }
 }
 
+/* === CHARACTER AVATAR (灵魂画像) === */
+.character-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  backdrop-filter: blur(10px);
+  margin-bottom: 32px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.character-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, var(--element-color, var(--gold)) 0%, transparent 50%);
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.character-avatar-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.character-avatar {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  position: relative;
+  filter: drop-shadow(0 8px 32px rgba(201, 169, 110, 0.3));
+  transition: var(--transition);
+  z-index: 1;
+}
+
+.character-avatar:hover {
+  transform: scale(1.05) rotate(2deg);
+}
+
+.character-avatar-glow {
+  position: absolute;
+  inset: -25px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--element-color, var(--gold)) 0%, transparent 65%);
+  opacity: 0.25;
+  animation: pulseGlow 4s ease-in-out infinite;
+  z-index: 0;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { transform: scale(1); opacity: 0.25; }
+  50% { transform: scale(1.12); opacity: 0.45; }
+}
+
+.character-badges {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.character-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-active);
+  border-radius: 100px;
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+}
+
+.character-badge .badge-icon {
+  font-size: 14px;
+  filter: drop-shadow(0 0 6px var(--element-color, var(--gold)));
+}
+
+.character-poem {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-style: italic;
+  color: var(--text);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.character-poem::before, .character-poem::after {
+  content: '✦';
+  color: var(--gold);
+  font-size: 10px;
+  margin: 0 8px;
+  vertical-align: middle;
+}
+
+/* === ELEMENT COLOR THEMES === */
+.element-ether   { --element-color: #8b7eb5; } /* 以太 - NT */
+.element-fire    { --element-color: #c47a6b; } /* 烈焰 - SP */
+.element-water   { --element-color: #5b9a8b; } /* 深流 - NF */
+.element-earth   { --element-color: #c9a96e; } /* 大地 - SJ */
+
+/* === FAMOUS PEOPLE GALLERY === */
+.famous-section {
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.famous-section h3 {
+  font-size: 14px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.famous-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 12px;
+}
+
+.famous-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 12px;
+  text-align: center;
+  transition: var(--transition);
+  backdrop-filter: blur(10px);
+}
+
+.famous-card:hover {
+  border-color: var(--border-active);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.famous-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  margin: 0 auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, var(--element-color, var(--gold)) 0%, var(--bg-deep) 100%);
+  border: 2px solid var(--border-active);
+  font-family: 'Playfair Display', serif;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.famous-name {
+  font-size: 13px;
+  color: var(--text);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.famous-title {
+  font-size: 11px;
+  color: var(--text-dim);
+  line-height: 1.4;
+}
+
+/* === COMPATIBILITY RING (缘分罗盘) === */
+.compat-ring-section {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.compat-ring-section h3 {
+  font-size: 14px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.compat-ring-section p {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-bottom: 16px;
+}
+
+.compat-ring-svg {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
+
+.compat-ring-sector {
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.compat-ring-sector:hover {
+  opacity: 0.75;
+}
+
+.compat-ring-text {
+  fill: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  pointer-events: none;
+  letter-spacing: 1px;
+}
+
+.compat-ring-text-self {
+  fill: var(--gold);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 900;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  pointer-events: none;
+}
+
+.compat-ring-center-type {
+  fill: var(--gold);
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 900;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  letter-spacing: 4px;
+}
+
+.compat-ring-center-label {
+  fill: var(--text-dim);
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 11px;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  letter-spacing: 2px;
+}
+
+/* === DAILY WISDOM (每日箴言) === */
+.daily-wisdom {
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(201, 169, 110, 0.1) 100%);
+  border: 1px solid var(--border-active);
+  border-radius: var(--radius);
+  padding: 32px 24px;
+  margin-bottom: 32px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.daily-wisdom::before {
+  content: '"';
+  position: absolute;
+  top: -20px;
+  left: 20px;
+  font-family: 'Playfair Display', serif;
+  font-size: 140px;
+  color: var(--gold);
+  opacity: 0.1;
+  line-height: 1;
+}
+
+.daily-wisdom-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-style: italic;
+  color: var(--text);
+  line-height: 1.7;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.daily-wisdom-author {
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.daily-wisdom-refresh {
+  margin-top: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: var(--transition);
+  background: none;
+  border: none;
+  font-family: 'Noto Sans SC', sans-serif;
+  letter-spacing: 1px;
+}
+
+.daily-wisdom-refresh:hover {
+  color: var(--gold);
+}
+
+/* === BATTLE MODE (人格对决) === */
+.battle-section {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.battle-section h3 {
+  font-size: 14px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.battle-section p {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-bottom: 20px;
+}
+
+.battle-arena {
+  display: grid;
+  grid-template-columns: 1fr 60px 1fr;
+  gap: 12px;
+  align-items: stretch;
+  margin: 16px 0 24px;
+}
+
+.battle-side {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 12px;
+  text-align: center;
+  position: relative;
+  transition: var(--transition);
+}
+
+.battle-side.is-self {
+  border-color: var(--gold);
+  background: rgba(201, 169, 110, 0.08);
+}
+
+.battle-side .battle-avatar {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+}
+
+.battle-side .battle-type {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--gold);
+  letter-spacing: 3px;
+  margin-bottom: 4px;
+}
+
+.battle-side .battle-name {
+  font-size: 13px;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.battle-side .battle-nick {
+  font-size: 11px;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+.battle-vs {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--accent-rose);
+  text-shadow: 0 0 20px rgba(196, 122, 107, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 2px;
+}
+
+.battle-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.battle-pick-btn {
+  padding: 6px 10px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-dim);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  cursor: pointer;
+  transition: var(--transition);
+  letter-spacing: 1px;
+}
+
+.battle-pick-btn:hover {
+  border-color: var(--border-active);
+  color: var(--gold);
+}
+
+.battle-pick-btn.active {
+  background: rgba(201, 169, 110, 0.15);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.battle-stats {
+  display: grid;
+  grid-template-columns: 100px 1fr 100px;
+  gap: 8px 12px;
+  margin-top: 24px;
+  text-align: left;
+}
+
+.battle-stat-label {
+  font-size: 12px;
+  color: var(--text-dim);
+  text-align: center;
+  padding: 6px 0;
+}
+
+.battle-stat-side-a, .battle-stat-side-b {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--gold);
+  text-align: center;
+  padding: 6px 0;
+}
+
+.battle-bar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 100px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+}
+
+.battle-bar-a {
+  background: linear-gradient(90deg, var(--accent-teal), var(--gold));
+  border-radius: 100px 0 0 100px;
+  height: 100%;
+  transition: width 0.8s ease;
+}
+
+.battle-bar-b {
+  background: linear-gradient(90deg, var(--accent-rose), var(--gold));
+  border-radius: 0 100px 100px 0;
+  height: 100%;
+  margin-left: auto;
+  transition: width 0.8s ease;
+}
+
+/* === TYPE GALLERY (人物志) === */
+.type-gallery-section {
+  margin-top: 32px;
+  text-align: left;
+}
+
+.type-gallery-section h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.type-gallery-section p {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-bottom: 24px;
+}
+
+.type-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 14px;
+}
+
+.type-gallery-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.type-gallery-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, var(--element-color, var(--gold)) 0%, transparent 60%);
+  opacity: 0.06;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.type-gallery-card:hover {
+  border-color: var(--border-active);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.type-gallery-card:hover::before {
+  opacity: 0.15;
+}
+
+.type-gallery-avatar {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+  position: relative;
+  z-index: 1;
+}
+
+.type-gallery-code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+  position: relative;
+  z-index: 1;
+}
+
+.type-gallery-name {
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 1;
+}
+
+/* === LETTER MEANINGS === */
+.letter-meanings {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 16px 0 8px;
+}
+
+.letter-meaning-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 8px;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.letter-meaning-card:hover {
+  border-color: var(--border-active);
+  transform: translateY(-2px);
+}
+
+.letter-meaning-card .letter {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 4px;
+  line-height: 1;
+}
+
+.letter-meaning-card .label {
+  font-size: 11px;
+  color: var(--text);
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.letter-meaning-card .opposite {
+  font-size: 10px;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+
+.letter-meaning-card .desc {
+  font-size: 10px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* === GROWTH TIPS === */
+.growth-tips {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.growth-tip {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 14px;
+  background: rgba(201, 169, 110, 0.04);
+  border-left: 2px solid var(--gold);
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.growth-tip-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--gold);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* === COMBO INSIGHTS === */
+.combo-insight-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.combo-insight-card {
+  background: rgba(201, 169, 110, 0.04);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  text-align: left;
+}
+
+.combo-insight-card h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  color: var(--gold);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.combo-insight-card p {
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+/* === RESPONSIVE for new components === */
+@media (max-width: 640px) {
+  .character-avatar { width: 140px; height: 140px; }
+  .famous-grid { grid-template-columns: repeat(2, 1fr); }
+  .type-gallery { grid-template-columns: repeat(2, 1fr); }
+  .letter-meanings { grid-template-columns: repeat(2, 1fr); }
+  .battle-arena { grid-template-columns: 1fr; }
+  .battle-vs { font-size: 28px; padding: 8px 0; }
+  .combo-insight-grid { grid-template-columns: 1fr; }
+  .character-poem { font-size: 14px; padding: 0 8px; }
+  .daily-wisdom { padding: 24px 18px; }
+  .daily-wisdom-quote { font-size: 15px; }
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
@@ -1277,6 +1970,16 @@ body {
         <button class="btn btn-secondary btn-sm" onclick="showAllTypes()">查看全部 16 种人格类型</button>
         <button class="btn btn-secondary btn-sm" style="margin-left:12px" onclick="showHistory()">查看历史记录</button>
       </div>
+      <div style="margin-top:24px;padding:24px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);max-width:720px;width:100%;">
+        <h3 style="font-family:'Playfair Display',serif;color:var(--gold);font-size:18px;margin-bottom:12px;">✦ 今日箴言 · 在测试之前 ✦</h3>
+        ${renderDailyWisdom('INTJ')}
+        <p style="margin-top:12px;font-size:11px;color:var(--text-muted);text-align:center;">—— 测试后你将看到专属你的箴言 ——</p>
+      </div>
+      <div style="margin-top:24px;width:100%;max-width:720px;">
+        <h3 style="font-family:'Playfair Display',serif;color:var(--gold);font-size:18px;text-align:center;margin-bottom:8px;">人物志 · 十六种灵魂</h3>
+        <p style="text-align:center;font-size:12px;color:var(--text-dim);margin-bottom:16px;">点击任意角色深入了解其完整画像</p>
+        ${renderTypeGallery()}
+      </div>
     </div>
   </section>
 
@@ -1595,6 +2298,456 @@ const typeData = {
   "ESFP": { name: "表演者", nickname: "充满活力的快乐使者", traits: ["热情", "乐观", "善于社交", "灵活"], desc: "ESFP 是充满活力的快乐使者，你善于制造快乐和惊喜。你热爱生活，享受当下，用你的热情感染周围的人。你天生是社交明星，善于调节气氛，让每个人都感到愉快。", strengths: ["社交能力强", "热情洋溢", "善于鼓励他人", "活在当下"], weaknesses: ["可能缺乏长远规划", "容易冲动", "不善于处理复杂问题", "有时过于追求享乐"], career: "演员、销售、导游、公关、活动策划、教练", love: "你在感情中充满热情和浪漫，喜欢用惊喜和欢乐来表达爱意。你享受和伴侣一起度过的每一个快乐时光。你需要学会在关系中保持深度和稳定性，不只追求表面的快乐。" },
 };
 
+// ==================== CHARACTER DATA (灵魂画像) ====================
+// 每个类型的元素、守护灵兽、名人同频、箴言、成长建议
+const characterData = {
+  "INTJ": {
+    element: "ether", elementLabel: "以太 · 思想",
+    animal: "🦉", animalName: "智慧猫头鹰",
+    poem: "星辰不说话，却指引所有寻找答案的人。",
+    famous: [
+      { initial: "E", name: "Elon Musk", title: "科技先驱" },
+      { initial: "诸", name: "诸葛亮", title: "千古智囊" },
+      { initial: "N", name: "Nietzsche", title: "哲学巨擘" },
+      { initial: "Z", name: "Mark Zuckerberg", title: "Meta 缔造者" }
+    ],
+    quote: { text: "夜晚的天空，是为能看到星辰的人而准备的。", author: "INTJ · 建筑师" },
+    growth: [
+      "接受'足够好'的方案，过度推演会让你错失行动时机",
+      "对他人的情感表达给予回应，不是所有事都该用逻辑解决",
+      "主动表达赞赏和支持——你的认可对他人意义重大"
+    ]
+  },
+  "INTP": {
+    element: "ether", elementLabel: "以太 · 思想",
+    animal: "🐦‍⬛", animalName: "思想渡鸦",
+    poem: "真理藏在所有假设的背后。",
+    famous: [
+      { initial: "E", name: "Albert Einstein", title: "相对论之父" },
+      { initial: "B", name: "Bill Gates", title: "微软创始人" },
+      { initial: "达", name: "达·芬奇", title: "文艺复兴全才" },
+      { initial: "S", name: "Socrates", title: "古希腊哲人" }
+    ],
+    quote: { text: "我思故我在。", author: "INTP · 逻辑学家" },
+    growth: [
+      "把脑海中的宏伟蓝图拆分成可执行的小步骤",
+      "为重要的事情设置截止日期——不是束缚而是保护",
+      "练习把想法说出来，写下来的世界之外还有听众"
+    ]
+  },
+  "ENTJ": {
+    element: "ether", elementLabel: "以太 · 思想",
+    animal: "🦁", animalName: "统帅雄狮",
+    poem: "秩序是效率的母亲，目标是远方的灯塔。",
+    famous: [
+      { initial: "S", name: "Steve Jobs", title: "苹果教父" },
+      { initial: "T", name: "Margaret Thatcher", title: "铁娘子" },
+      { initial: "曹", name: "曹操", title: "魏武之雄" },
+      { initial: "M", name: "Mary Shelley", title: "科幻之母" }
+    ],
+    quote: { text: "不谋万世者，不足谋一时。", author: "ENTJ · 指挥官" },
+    growth: [
+      "在推进目标前先倾听团队的声音，他们可能有更好的路径",
+      "允许'不完美但可行'的方案存在，控制欲过强会孤立你",
+      "为身边的人留出犯错和成长的空间"
+    ]
+  },
+  "ENTP": {
+    element: "ether", elementLabel: "以太 · 思想",
+    animal: "🦊", animalName: "智趣灵狐",
+    poem: "所有'不可能'都只是还没被打破的假设。",
+    famous: [
+      { initial: "M", name: "Mark Twain", title: "幽默大师" },
+      { initial: "苏", name: "苏格拉底", title: "古典辩才" },
+      { initial: "L", name: "Leonardo DiCaprio", title: "奥斯卡影帝" },
+      { initial: "R", name: "Ricky Gervais", title: "反叛喜剧人" }
+    ],
+    quote: { text: "辩论是思想最有趣的体操。", author: "ENTP · 辩论家" },
+    growth: [
+      "把一个想法坚持做完，新点子会不断分散你的注意力",
+      "区分'为辩而辩'和'为真而辩'，倾听同样重要",
+      "为创意设定最后期限，否则它们会永远停留在'构思中'"
+    ]
+  },
+  "INFJ": {
+    element: "water", elementLabel: "深流 · 情感",
+    animal: "🕊️", animalName: "洞察白鸽",
+    poem: "你看得见人们藏在笑容后面的故事。",
+    famous: [
+      { initial: "M", name: "Martin Luther King", title: "民权之声" },
+      { initial: "T", name: "Mother Teresa", title: "仁爱天使" },
+      { initial: "王", name: "王阳明", title: "心学宗师" },
+      { initial: "L", name: "Lady Gaga", title: "灵魂歌者" }
+    ],
+    quote: { text: "最深的孤独，是你看见了别人看不见的东西。", author: "INFJ · 提倡者" },
+    growth: [
+      "为自己设下边界——帮助他人之前，先确认你还有能量",
+      "别把别人的情绪都背在自己身上",
+      "允许自己'不总是'那么深刻和富有使命感"
+    ]
+  },
+  "INFP": {
+    element: "water", elementLabel: "深流 · 情感",
+    animal: "🦌", animalName: "梦境之鹿",
+    poem: "你活在比现实更真实的世界里。",
+    famous: [
+      { initial: "S", name: "Shakespeare", title: "戏剧诗圣" },
+      { initial: "O", name: "Oscar Wilde", title: "唯美才子" },
+      { initial: "林", name: "林黛玉", title: "潇湘诗魂" },
+      { initial: "V", name: "Vincent van Gogh", title: "星夜画家" }
+    ],
+    quote: { text: "做个浪漫的人，比做个正确的人更勇敢。", author: "INFP · 调停者" },
+    growth: [
+      "把内心的感受也告诉在乎你的人，他们猜不到",
+      "给自己设定实际可行的计划，让理想落进泥土里",
+      "接受'足够好'——完美主义会消耗你创作的能量"
+    ]
+  },
+  "ENFJ": {
+    element: "water", elementLabel: "深流 · 情感",
+    animal: "🦅", animalName: "领航之鹰",
+    poem: "你走在前面，是因为你相信身后的人跟得上。",
+    famous: [
+      { initial: "O", name: "Oprah Winfrey", title: "传媒女王" },
+      { initial: "林", name: "林徽因", title: "一代才女" },
+      { initial: "B", name: "Barack Obama", title: "沟通大师" },
+      { initial: "M", name: "Martin Luther", title: "宗教改革者" }
+    ],
+    quote: { text: "最高的领导力，是让每个人都成为更好的自己。", author: "ENFJ · 主人公" },
+    growth: [
+      "在照顾世界之前，先照顾自己——你不是永动机",
+      "允许他人为自己的情绪负责，不必总是那个兜底的人",
+      "学会说'不'，这对你是重要的能力练习"
+    ]
+  },
+  "ENFP": {
+    element: "water", elementLabel: "深流 · 情感",
+    animal: "🦋", animalName: "追光之蝶",
+    poem: "你追逐的不是目的地，而是路上的光。",
+    famous: [
+      { initial: "R", name: "Robin Williams", title: "灵魂演员" },
+      { initial: "苏", name: "苏轼", title: "浪漫词人" },
+      { initial: "W", name: "Walt Disney", title: "造梦大师" },
+      { initial: "M", name: "Mark Twain", title: "幽默作家" }
+    ],
+    quote: { text: "可能性，是世界上最好的礼物。", author: "ENFP · 竞选者" },
+    growth: [
+      "把'想做的事'和'正在做的事'对齐，热情需要落地",
+      "为重要的人和事留出持续的专注时间",
+      "允许计划被打乱——弹性不是混乱，是你的能力"
+    ]
+  },
+  "ISTJ": {
+    element: "earth", elementLabel: "大地 · 守护",
+    animal: "🦫", animalName: "勤勉河狸",
+    poem: "你用双手，一砖一瓦建造出值得信赖的世界。",
+    famous: [
+      { initial: "G", name: "George Washington", title: "国父典范" },
+      { initial: "曾", name: "曾国藩", title: "儒家完人" },
+      { initial: "A", name: "Angela Merkel", title: "铁腕总理" },
+      { initial: "W", name: "Warren Buffett", title: "价值投资" }
+    ],
+    quote: { text: "承诺是世界上最贵重的东西，因为它无法打折。", author: "ISTJ · 物流师" },
+    growth: [
+      "给自己一些'无用的乐趣'，效率之外还有诗意",
+      "在坚守原则的同时，也给变化留一点空间",
+      "主动表达感受——你说得太少，别人会误以为你不在意"
+    ]
+  },
+  "ISFJ": {
+    element: "earth", elementLabel: "大地 · 守护",
+    animal: "🐻", animalName: "温柔棕熊",
+    poem: "你的爱，是恒温的炉火，永不熄灭。",
+    famous: [
+      { initial: "B", name: "Beyoncé", title: "舞台天后" },
+      { initial: "孔", name: "孔子", title: "万世师表" },
+      { initial: "M", name: "Mother Teresa", title: "慈悲天使" },
+      { initial: "J", name: "Jeanne d'Arc", title: "圣女贞德" }
+    ],
+    quote: { text: "最深的温柔，是不让爱的人担心。", author: "ISFJ · 守卫者" },
+    growth: [
+      "把你的需要也说出来——你不必永远是照顾人的那一个",
+      "拒绝之前不必内疚，你的边界值得被尊重",
+      "给自己一个'什么都不做'的休息日"
+    ]
+  },
+  "ESTJ": {
+    element: "earth", elementLabel: "大地 · 守护",
+    animal: "🐂", animalName: "稳重公牛",
+    poem: "秩序不是限制，是给所有人飞翔的跑道。",
+    famous: [
+      { initial: "R", name: "Franklin Roosevelt", title: "新政领袖" },
+      { initial: "周", name: "周恩来", title: "开国总理" },
+      { initial: "S", name: "Sheryl Sandberg", title: "硅谷铁娘子" },
+      { initial: "H", name: "Henry Ford", title: "工业之父" }
+    ],
+    quote: { text: "规则不是枷锁，是彼此信任的桥梁。", author: "ESTJ · 总经理" },
+    growth: [
+      "给团队一些'试错空间'，不是所有事都必须按流程",
+      "在表达观点前，先问一句'你怎么看？'",
+      "承认情感的力量——效率之外，连接也很重要"
+    ]
+  },
+  "ESFJ": {
+    element: "earth", elementLabel: "大地 · 守护",
+    animal: "🐕", animalName: "忠诚金毛",
+    poem: "你把世界变成一个温暖的客厅。",
+    famous: [
+      { initial: "B", name: "Bill Clinton", title: "人民总统" },
+      { initial: "T", name: "Taylor Swift", title: "国民甜心" },
+      { initial: "文", name: "文成公主", title: "和亲典范" },
+      { initial: "J", name: "Jennifer Lopez", title: "活力天后" }
+    ],
+    quote: { text: "最深的幸福，是看到你爱的人在笑。", author: "ESFJ · 执政官" },
+    growth: [
+      "别把他人的评价当成自己的价值标尺",
+      "在照顾所有人之前，先照顾自己",
+      "接受'不和谐'的存在——不是所有事都需要皆大欢喜"
+    ]
+  },
+  "ISTP": {
+    element: "fire", elementLabel: "烈焰 · 行动",
+    animal: "🐈", animalName: "独行黑猫",
+    poem: "世界是实验室，你是冷静的实验者。",
+    famous: [
+      { initial: "T", name: "Tom Cruise", title: "动作巨星" },
+      { initial: "鲁", name: "鲁班", title: "工匠始祖" },
+      { initial: "B", name: "Bruce Lee", title: "功夫之王" },
+      { initial: "C", name: "Clint Eastwood", title: "硬汉导演" }
+    ],
+    quote: { text: "工具是中立的，让它发光的是你的双手。", author: "ISTP · 鉴赏家" },
+    growth: [
+      "为长期目标也留一点精力——不只是当下",
+      "把内心的想法主动分享给在乎你的人",
+      "在理性之外，也允许自己有情绪的时刻"
+    ]
+  },
+  "ISFP": {
+    element: "fire", elementLabel: "烈焰 · 行动",
+    animal: "🦜", animalName: "艺术之鹦",
+    poem: "美，是你理解世界的方式。",
+    famous: [
+      { initial: "M", name: "Michael Jackson", title: "流行之王" },
+      { initial: "李", name: "李白", title: "诗仙飘逸" },
+      { initial: "V", name: "Frida Kahlo", title: "色彩之女" },
+      { initial: "B", name: "Bob Dylan", title: "民谣诗人" }
+    ],
+    quote: { text: "最真的艺术，是活成自己最舒服的样子。", author: "ISFP · 探险家" },
+    growth: [
+      "把你的计划写下来——你值得拥有更确定的未来",
+      "为你的独特性感到骄傲，不必总是融入人群",
+      "主动表达需求和意见——你的声音一样重要"
+    ]
+  },
+  "ESTP": {
+    element: "fire", elementLabel: "烈焰 · 行动",
+    animal: "🐅", animalName: "无畏猛虎",
+    poem: "世界是游乐场，你是天生的玩家。",
+    famous: [
+      { initial: "M", name: "Madonna", title: "流行女皇" },
+      { initial: "成", name: "成吉思汗", title: "草原雄鹰" },
+      { initial: "E", name: "Ernest Hemingway", title: "硬汉作家" },
+      { initial: "J", name: "Jack Ma", title: "创业传奇" }
+    ],
+    quote: { text: "想一千次，不如这一次。", author: "ESTP · 企业家" },
+    growth: [
+      "为长远的未来留一点耐心——不是所有事都要立刻见效",
+      "在行动之前，听完别人完整的想法",
+      "为重要的人留出深度陪伴的时间"
+    ]
+  },
+  "ESFP": {
+    element: "fire", elementLabel: "烈焰 · 行动",
+    animal: "🦚", animalName: "闪耀孔雀",
+    poem: "你是这个世界的色彩。",
+    famous: [
+      { initial: "W", name: "Will Smith", title: "全民偶像" },
+      { initial: "杨", name: "杨贵妃", title: "盛唐之美" },
+      { initial: "M", name: "Marilyn Monroe", title: "永恒女神" },
+      { initial: "B", name: "Bruno Mars", title: "节奏精灵" }
+    ],
+    quote: { text: "快乐不是目标，是生活的本能。", author: "ESFP · 表演者" },
+    growth: [
+      "为长期目标做一些计划——你值得拥有更深的成就",
+      "在热闹中保留一些独处的时间，给内心充电",
+      "认真对待复杂的情感——不只是当下的欢愉"
+    ]
+  }
+};
+
+// ==================== CHARACTER AVATAR SVG GENERATOR ====================
+// 为 16 种 MBTI 类型生成独特的 SVG 角色形象
+function getCharacterAvatar(type) {
+  const palette = (() => {
+    if (type.includes('NT')) return { a: '#4a3b6b', b: '#8b7eb5', c: '#c9a96e', d: '#1a1530' }; // 以太 - 紫
+    if (type.includes('NF')) return { a: '#2d5a52', b: '#5b9a8b', c: '#a8c4b8', d: '#0f1f1c' }; // 深流 - 青
+    if (type.includes('SJ')) return { a: '#5c4a3a', b: '#c9a96e', c: '#d4b896', d: '#1f1814' }; // 大地 - 金
+    return { a: '#6b3a2d', b: '#c47a6b', c: '#e8a892', d: '#1f1410' }; // 烈焰 - 红
+  })();
+
+  // 16 种独特设计
+  const designs = {
+    // NT 分析师 - 紫
+    'INTJ': { hair: 'crown',   eye: 'sharp',   extra: 'crown',    aura: 'stars'   },
+    'INTP': { hair: 'messy',   eye: 'think',   extra: 'glasses',  aura: 'books'   },
+    'ENTJ': { hair: 'slick',   eye: 'command', extra: 'collar',   aura: 'flame'   },
+    'ENTP': { hair: 'wavy',    eye: 'spark',   extra: 'lightning',aura: 'sparkle' },
+    // NF 外交家 - 青
+    'INFJ': { hair: 'long',    eye: 'mystic',  extra: 'halo',     aura: 'moon'    },
+    'INFP': { hair: 'wavy',    eye: 'dream',   extra: 'flower',   aura: 'petals'  },
+    'ENFJ': { hair: 'sweep',   eye: 'warm',    extra: 'sun',      aura: 'rays'    },
+    'ENFP': { hair: 'bun',     eye: 'bright',  extra: 'star',     aura: 'confetti'},
+    // SJ 守护者 - 金
+    'ISTJ': { hair: 'short',   eye: 'calm',    extra: 'shield',   aura: 'rings'   },
+    'ISFJ': { hair: 'braid',   eye: 'kind',    extra: 'heart',    aura: 'hearts'  },
+    'ESTJ': { hair: 'slick',   eye: 'firm',    extra: 'badge',    aura: 'lines'   },
+    'ESFJ': { hair: 'soft',    eye: 'smile',   extra: 'flower',   aura: 'rings'   },
+    // SP 探险家 - 红
+    'ISTP': { hair: 'short',   eye: 'cool',    extra: 'goggles',  aura: 'gear'    },
+    'ISFP': { hair: 'long',    eye: 'gentle',  extra: 'paint',    aura: 'leaves'  },
+    'ESTP': { hair: 'spiky',   eye: 'bold',    extra: 'flame',    aura: 'fire'    },
+    'ESFP': { hair: 'curly',   eye: 'laugh',   extra: 'spotlight',aura: 'sparkle' }
+  };
+
+  const d = designs[type] || designs['INTJ'];
+  const size = 200;
+
+  // 头发 SVG（按类型）
+  const hairSVG = (() => {
+    switch (d.hair) {
+      case 'crown':  return `<path d="M 50 95 Q 50 35 100 35 Q 150 35 150 95" fill="${palette.a}" stroke="${palette.b}" stroke-width="2"/><polygon points="75,40 100,20 125,40 100,55" fill="${palette.c}"/>`;
+      case 'messy':  return `<path d="M 50 100 Q 40 50 75 40 Q 90 30 100 35 Q 120 25 135 45 Q 155 50 150 100 L 145 70 Q 130 75 100 65 Q 70 75 55 70 Z" fill="${palette.a}"/>`;
+      case 'slick':  return `<path d="M 50 95 Q 55 40 100 38 Q 145 40 150 95 L 145 80 Q 130 70 100 68 Q 70 70 55 80 Z" fill="${palette.a}"/>`;
+      case 'wavy':   return `<path d="M 50 100 Q 40 50 80 38 Q 100 30 120 38 Q 160 50 150 100 Q 145 80 130 78 Q 100 70 70 78 Q 55 80 50 100 Z" fill="${palette.a}"/>`;
+      case 'long':   return `<path d="M 45 100 Q 45 35 100 32 Q 155 35 155 100 L 155 150 Q 150 160 140 155 L 135 95 Q 130 70 100 65 Q 70 70 65 95 L 60 155 Q 50 160 45 150 Z" fill="${palette.a}"/>`;
+      case 'sweep':  return `<path d="M 50 100 Q 50 40 105 35 Q 160 50 152 105 Q 150 80 100 70 Q 75 78 50 100 Z" fill="${palette.a}"/>`;
+      case 'bun':    return `<circle cx="100" cy="32" r="18" fill="${palette.a}"/><path d="M 50 100 Q 50 50 100 45 Q 150 50 150 100 L 148 78 Q 130 70 100 68 Q 70 70 52 78 Z" fill="${palette.a}"/>`;
+      case 'short':  return `<path d="M 55 100 Q 55 50 100 48 Q 145 50 145 100 L 142 75 Q 130 70 100 68 Q 70 70 58 75 Z" fill="${palette.a}"/>`;
+      case 'braid':  return `<path d="M 50 100 Q 50 45 100 42 Q 150 45 150 100 Q 145 75 100 70 Q 55 75 50 100 Z" fill="${palette.a}"/><path d="M 60 100 Q 55 130 65 150 M 140 100 Q 145 130 135 150" stroke="${palette.a}" stroke-width="6" fill="none"/>`;
+      case 'soft':   return `<path d="M 48 100 Q 48 45 100 40 Q 152 45 152 100 Q 148 78 130 75 Q 100 68 70 75 Q 52 78 48 100 Z" fill="${palette.a}"/>`;
+      case 'spiky':  return `<path d="M 55 100 L 65 55 L 80 75 L 90 45 L 100 70 L 110 45 L 120 75 L 135 55 L 145 100 Z" fill="${palette.a}"/>`;
+      case 'curly':  return `<circle cx="65" cy="55" r="15" fill="${palette.a}"/><circle cx="85" cy="42" r="15" fill="${palette.a}"/><circle cx="115" cy="42" r="15" fill="${palette.a}"/><circle cx="135" cy="55" r="15" fill="${palette.a}"/><path d="M 50 100 Q 50 60 100 55 Q 150 60 150 100 Q 145 80 100 75 Q 55 80 50 100 Z" fill="${palette.a}"/>`;
+      default: return '';
+    }
+  })();
+
+  // 眼睛 SVG
+  const eyeSVG = (() => {
+    const eyeY = 105;
+    switch (d.eye) {
+      case 'sharp':   return `<path d="M 75 ${eyeY} L 90 ${eyeY+3} M 110 ${eyeY+3} L 125 ${eyeY}" stroke="#0a0e17" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+      case 'think':   return `<circle cx="82" cy="${eyeY}" r="4" fill="#0a0e17"/><circle cx="118" cy="${eyeY}" r="4" fill="#0a0e17"/>`;
+      case 'command': return `<path d="M 72 ${eyeY} Q 82 ${eyeY-2} 92 ${eyeY} M 108 ${eyeY} Q 118 ${eyeY-2} 128 ${eyeY}" stroke="#0a0e17" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+      case 'spark':   return `<path d="M 75 ${eyeY} L 88 ${eyeY-2} L 88 ${eyeY+2} Z M 112 ${eyeY-2} L 125 ${eyeY} L 112 ${eyeY+2} Z" fill="#0a0e17"/>`;
+      case 'mystic':  return `<ellipse cx="82" cy="${eyeY}" rx="5" ry="3" fill="#0a0e17"/><ellipse cx="118" cy="${eyeY}" rx="5" ry="3" fill="#0a0e17"/>`;
+      case 'dream':   return `<path d="M 75 ${eyeY+2} Q 82 ${eyeY-2} 89 ${eyeY+2} M 111 ${eyeY+2} Q 118 ${eyeY-2} 125 ${eyeY+2}" stroke="#0a0e17" stroke-width="2.5" fill="none" stroke-linecap="round"/>`;
+      case 'warm':    return `<path d="M 72 ${eyeY+2} Q 82 ${eyeY-4} 92 ${eyeY+2} M 108 ${eyeY+2} Q 118 ${eyeY-4} 128 ${eyeY+2}" stroke="#0a0e17" stroke-width="2.5" fill="none" stroke-linecap="round"/>`;
+      case 'bright':  return `<circle cx="82" cy="${eyeY}" r="5" fill="#0a0e17"/><circle cx="118" cy="${eyeY}" r="5" fill="#0a0e17"/><circle cx="80" cy="${eyeY-1}" r="1.5" fill="#fff"/><circle cx="116" cy="${eyeY-1}" r="1.5" fill="#fff"/>`;
+      case 'calm':    return `<path d="M 74 ${eyeY+1} L 90 ${eyeY+1} M 110 ${eyeY+1} L 126 ${eyeY+1}" stroke="#0a0e17" stroke-width="2.5" stroke-linecap="round"/>`;
+      case 'kind':    return `<path d="M 73 ${eyeY} Q 82 ${eyeY-3} 91 ${eyeY} M 109 ${eyeY} Q 118 ${eyeY-3} 127 ${eyeY}" stroke="#0a0e17" stroke-width="2.5" fill="none" stroke-linecap="round"/>`;
+      case 'firm':    return `<path d="M 72 ${eyeY+1} L 92 ${eyeY+1} M 108 ${eyeY+1} L 128 ${eyeY+1}" stroke="#0a0e17" stroke-width="3" stroke-linecap="round"/>`;
+      case 'smile':   return `<path d="M 72 ${eyeY+1} Q 82 ${eyeY-4} 92 ${eyeY+1} M 108 ${eyeY+1} Q 118 ${eyeY-4} 128 ${eyeY+1}" stroke="#0a0e17" stroke-width="2.5" fill="none" stroke-linecap="round"/>`;
+      case 'cool':    return `<path d="M 74 ${eyeY-2} L 90 ${eyeY+2} M 110 ${eyeY+2} L 126 ${eyeY-2}" stroke="#0a0e17" stroke-width="2.5" stroke-linecap="round"/>`;
+      case 'gentle':  return `<path d="M 75 ${eyeY+1} Q 82 ${eyeY-2} 89 ${eyeY+1} M 111 ${eyeY+1} Q 118 ${eyeY-2} 125 ${eyeY+1}" stroke="#0a0e17" stroke-width="2" fill="none" stroke-linecap="round"/>`;
+      case 'bold':    return `<circle cx="82" cy="${eyeY}" r="4" fill="#0a0e17"/><circle cx="118" cy="${eyeY}" r="4" fill="#0a0e17"/>`;
+      case 'laugh':   return `<path d="M 72 ${eyeY+2} Q 82 ${eyeY-6} 92 ${eyeY+2} M 108 ${eyeY+2} Q 118 ${eyeY-6} 128 ${eyeY+2}" stroke="#0a0e17" stroke-width="2.5" fill="none" stroke-linecap="round"/>`;
+      default: return '';
+    }
+  })();
+
+  // 嘴 SVG
+  const mouthSVG = (() => {
+    const smile = ['warm','kind','smile','bright','laugh','gentle'].includes(d.eye);
+    const smirk = ['sharp','command','spark','cool','bold'].includes(d.eye);
+    if (smile) return `<path d="M 88 138 Q 100 148 112 138" stroke="#0a0e17" stroke-width="2.5" fill="none" stroke-linecap="round"/>`;
+    if (smirk) return `<path d="M 90 140 Q 100 142 112 138" stroke="#0a0e17" stroke-width="2.5" fill="none" stroke-linecap="round"/>`;
+    return `<path d="M 90 140 L 110 140" stroke="#0a0e17" stroke-width="2.5" stroke-linecap="round"/>`;
+  })();
+
+  // 配饰 SVG
+  const extraSVG = (() => {
+    switch (d.extra) {
+      case 'crown': return `<path d="M 65 28 L 75 15 L 85 28 L 100 8 L 115 28 L 125 15 L 135 28 L 135 35 L 65 35 Z" fill="${palette.c}" stroke="${palette.a}" stroke-width="1.5"/><circle cx="100" cy="20" r="3" fill="${palette.a}"/>`;
+      case 'glasses': return `<circle cx="82" cy="105" r="11" fill="none" stroke="#0a0e17" stroke-width="2"/><circle cx="118" cy="105" r="11" fill="none" stroke="#0a0e17" stroke-width="2"/><line x1="93" y1="105" x2="107" y2="105" stroke="#0a0e17" stroke-width="2"/>`;
+      case 'collar': return `<path d="M 60 175 L 75 165 L 100 175 L 125 165 L 140 175 L 140 200 L 60 200 Z" fill="${palette.a}" stroke="${palette.c}" stroke-width="1.5"/>`;
+      case 'lightning': return `<path d="M 158 50 L 145 75 L 155 75 L 142 100" stroke="${palette.c}" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+      case 'halo': return `<ellipse cx="100" cy="22" rx="22" ry="6" fill="none" stroke="${palette.c}" stroke-width="2"/><ellipse cx="100" cy="22" rx="14" ry="3" fill="${palette.c}" opacity="0.5"/>`;
+      case 'flower': return `<circle cx="155" cy="80" r="4" fill="${palette.c}"/><circle cx="148" cy="73" r="4" fill="${palette.c}"/><circle cx="162" cy="73" r="4" fill="${palette.c}"/><circle cx="148" cy="87" r="4" fill="${palette.c}"/><circle cx="162" cy="87" r="4" fill="${palette.c}"/><circle cx="155" cy="80" r="2.5" fill="${palette.a}"/>`;
+      case 'sun': return `<circle cx="100" cy="20" r="6" fill="${palette.c}"/><line x1="100" y1="6" x2="100" y2="0" stroke="${palette.c}" stroke-width="2"/><line x1="88" y1="20" x2="80" y2="20" stroke="${palette.c}" stroke-width="2"/><line x1="112" y1="20" x2="120" y2="20" stroke="${palette.c}" stroke-width="2"/><line x1="91" y1="11" x2="86" y2="6" stroke="${palette.c}" stroke-width="2"/><line x1="109" y1="11" x2="114" y2="6" stroke="${palette.c}" stroke-width="2"/>`;
+      case 'star': return `<polygon points="160,75 163,82 170,82 165,87 167,94 160,90 153,94 155,87 150,82 157,82" fill="${palette.c}"/>`;
+      case 'shield': return `<path d="M 155 80 L 175 70 L 175 95 Q 175 105 165 110 L 155 100 Z" fill="${palette.c}" stroke="${palette.a}" stroke-width="1.5"/>`;
+      case 'heart': return `<path d="M 158 90 Q 158 82 165 82 Q 172 82 172 90 Q 172 98 165 105 Q 158 98 158 90 Z" fill="${palette.c}"/>`;
+      case 'badge': return `<polygon points="155,80 165,75 175,80 175,90 165,95 155,90" fill="${palette.c}" stroke="${palette.a}" stroke-width="1.5"/><text x="165" y="89" font-size="10" text-anchor="middle" fill="${palette.a}" font-weight="bold">★</text>`;
+      case 'goggles': return `<circle cx="78" cy="100" r="10" fill="none" stroke="#0a0e17" stroke-width="2.5"/><circle cx="122" cy="100" r="10" fill="none" stroke="#0a0e17" stroke-width="2.5"/><line x1="88" y1="100" x2="112" y2="100" stroke="#0a0e17" stroke-width="2"/><line x1="68" y1="100" x2="56" y2="98" stroke="#0a0e17" stroke-width="2"/><line x1="132" y1="100" x2="144" y2="98" stroke="#0a0e17" stroke-width="2"/>`;
+      case 'paint': return `<circle cx="160" cy="80" r="6" fill="${palette.c}"/><circle cx="150" cy="90" r="3" fill="${palette.b}"/><circle cx="168" cy="92" r="2.5" fill="${palette.a}"/>`;
+      case 'flame': return `<path d="M 158 95 Q 153 85 158 75 Q 163 80 165 70 Q 170 80 168 90 Q 165 95 158 95 Z" fill="${palette.c}"/>`;
+      case 'spotlight': return `<polygon points="160,60 168,80 158,80" fill="${palette.c}" opacity="0.7"/><line x1="160" y1="50" x2="160" y2="60" stroke="${palette.c}" stroke-width="1.5"/><line x1="155" y1="55" x2="158" y2="62" stroke="${palette.c}" stroke-width="1.5"/><line x1="165" y1="55" x2="162" y2="62" stroke="${palette.c}" stroke-width="1.5"/>`;
+      default: return '';
+    }
+  })();
+
+  // 背景装饰（光环/光环符号）
+  const auraSVG = (() => {
+    const a = (cx, cy, r) => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${palette.c}" stroke-width="0.8" opacity="0.5"/>`;
+    const star = (cx, cy, s) => `<polygon points="${cx},${cy-s} ${cx+s*0.3},${cy-s*0.3} ${cx+s},${cy} ${cx+s*0.3},${cy+s*0.3} ${cx},${cy+s} ${cx-s*0.3},${cy+s*0.3} ${cx-s},${cy} ${cx-s*0.3},${cy-s*0.3}" fill="${palette.c}" opacity="0.7"/>`;
+    switch (d.aura) {
+      case 'stars': return a(35,170,3)+a(165,170,3)+a(30,30,3)+a(170,30,3)+star(40,160,3)+star(160,160,3);
+      case 'books': return `<rect x="22" y="165" width="14" height="20" fill="${palette.a}" rx="1"/><rect x="20" y="170" width="14" height="20" fill="${palette.b}" rx="1"/><line x1="22" y1="175" x2="32" y2="175" stroke="${palette.c}" stroke-width="0.5"/>`;
+      case 'flame': return `<path d="M 30 170 Q 25 150 30 130 Q 35 150 30 170" fill="${palette.c}" opacity="0.6"/><path d="M 170 170 Q 175 150 170 130 Q 165 150 170 170" fill="${palette.c}" opacity="0.6"/>`;
+      case 'sparkle': return star(25,160,3)+star(175,160,3)+star(30,40,3)+star(170,40,3)+`<circle cx="22" cy="100" r="1.5" fill="${palette.c}"/><circle cx="178" cy="100" r="1.5" fill="${palette.c}"/>`;
+      case 'moon': return `<path d="M 175 50 A 18 18 0 1 0 175 90 A 14 14 0 1 1 175 50" fill="${palette.c}" opacity="0.5"/>`;
+      case 'petals': return `<ellipse cx="30" cy="160" rx="4" ry="2" fill="${palette.c}" opacity="0.6" transform="rotate(30 30 160)"/><ellipse cx="170" cy="170" rx="4" ry="2" fill="${palette.c}" opacity="0.6" transform="rotate(-30 170 170)"/><ellipse cx="35" cy="40" rx="3" ry="1.5" fill="${palette.c}" opacity="0.6"/>`;
+      case 'rays': return `<line x1="100" y1="0" x2="100" y2="6" stroke="${palette.c}" stroke-width="2"/><line x1="50" y1="10" x2="55" y2="15" stroke="${palette.c}" stroke-width="1.5"/><line x1="150" y1="10" x2="145" y2="15" stroke="${palette.c}" stroke-width="1.5"/>`;
+      case 'confetti': return `<rect x="22" y="155" width="3" height="8" fill="${palette.c}" transform="rotate(30 23 159)"/><rect x="175" y="155" width="3" height="8" fill="${palette.c}" transform="rotate(-30 176 159)"/><rect x="30" y="45" width="3" height="8" fill="${palette.c}" transform="rotate(45 31 49)"/><rect x="170" y="45" width="3" height="8" fill="${palette.c}" transform="rotate(-45 171 49)"/>`;
+      case 'rings': return a(30,170,8)+a(170,170,8)+a(35,30,8)+a(165,30,8);
+      case 'hearts': return `<path d="M 30 170 Q 30 165 33 165 Q 36 165 36 170 Q 36 175 30 178 Q 24 175 24 170 Q 24 165 27 165 Q 30 165 30 170 Z" fill="${palette.c}" opacity="0.5"/><path d="M 170 170 Q 170 165 173 165 Q 176 165 176 170 Q 176 175 170 178 Q 164 175 164 170 Q 164 165 167 165 Q 170 165 170 170 Z" fill="${palette.c}" opacity="0.5"/>`;
+      case 'lines': return `<line x1="20" y1="170" x2="35" y2="170" stroke="${palette.c}" stroke-width="1.5"/><line x1="165" y1="170" x2="180" y2="170" stroke="${palette.c}" stroke-width="1.5"/><line x1="20" y1="30" x2="35" y2="30" stroke="${palette.c}" stroke-width="1.5"/><line x1="165" y1="30" x2="180" y2="30" stroke="${palette.c}" stroke-width="1.5"/>`;
+      case 'gear': return `<circle cx="30" cy="170" r="6" fill="none" stroke="${palette.c}" stroke-width="1.2"/><circle cx="30" cy="170" r="2" fill="${palette.c}"/><circle cx="170" cy="170" r="6" fill="none" stroke="${palette.c}" stroke-width="1.2"/><circle cx="170" cy="170" r="2" fill="${palette.c}"/>`;
+      case 'leaves': return `<path d="M 25 170 Q 30 160 38 165 Q 35 172 25 170 Z" fill="${palette.c}" opacity="0.6"/><path d="M 175 170 Q 170 160 162 165 Q 165 172 175 170 Z" fill="${palette.c}" opacity="0.6"/>`;
+      case 'fire': return `<path d="M 25 175 Q 22 165 25 155 Q 28 160 30 150 Q 33 160 35 170 Q 32 175 25 175 Z" fill="${palette.c}" opacity="0.6"/><path d="M 175 175 Q 178 165 175 155 Q 172 160 170 150 Q 167 160 165 170 Q 168 175 175 175 Z" fill="${palette.c}" opacity="0.6"/>`;
+      default: return '';
+    }
+  })();
+
+  return `
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+      <defs>
+        <radialGradient id="bg-${type}" cx="50%" cy="40%" r="60%">
+          <stop offset="0%" stop-color="${palette.b}" stop-opacity="0.5"/>
+          <stop offset="60%" stop-color="${palette.d}" stop-opacity="0.7"/>
+          <stop offset="100%" stop-color="#0a0e17"/>
+        </radialGradient>
+        <radialGradient id="face-${type}" cx="50%" cy="40%" r="60%">
+          <stop offset="0%" stop-color="#e8d4b8"/>
+          <stop offset="100%" stop-color="#c9a48e"/>
+        </radialGradient>
+      </defs>
+      <circle cx="100" cy="100" r="95" fill="url(#bg-${type})"/>
+      <circle cx="100" cy="100" r="95" fill="none" stroke="${palette.b}" stroke-width="2" opacity="0.5"/>
+      ${auraSVG}
+      <!-- 脖颈 -->
+      <path d="M 85 160 L 85 180 Q 100 188 115 180 L 115 160" fill="url(#face-${type})"/>
+      <!-- 肩膀 -->
+      <path d="M 50 195 Q 50 175 85 170 L 115 170 Q 150 175 150 195 Z" fill="${palette.a}"/>
+      <!-- 脸 -->
+      <ellipse cx="100" cy="115" rx="42" ry="52" fill="url(#face-${type})"/>
+      <!-- 头发 -->
+      ${hairSVG}
+      <!-- 眼睛 -->
+      ${eyeSVG}
+      <!-- 眉毛（柔和） -->
+      <path d="M 72 92 Q 82 89 92 92" stroke="${palette.a}" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6"/>
+      <path d="M 108 92 Q 118 89 128 92" stroke="${palette.a}" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6"/>
+      <!-- 嘴 -->
+      ${mouthSVG}
+      <!-- 配饰 -->
+      ${extraSVG}
+      <!-- 类型水印 -->
+      <text x="100" y="195" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" font-weight="700" fill="${palette.c}" letter-spacing="2">${type}</text>
+    </svg>
+  `;
+}
+
 // ==================== COMPATIBILITY DATA ====================
 // Based on cognitive function theory and letter similarity
 const compatibilityMatrix = {
@@ -1623,6 +2776,324 @@ function getCompatibility(userType) {
     .map(([type, score]) => ({ type, score, name: typeData[type]?.name || '', nickname: typeData[type]?.nickname || '' }))
     .sort((a, b) => b.score - a.score);
 }
+
+// ==================== NEW GAMEPLAY FUNCTIONS ====================
+
+// 1. 灵魂画像：角色卡片
+function renderCharacterCard(type) {
+  const ch = characterData[type];
+  if (!ch) return '';
+  return `
+    <div class="character-card element-${ch.element}">
+      <div class="character-avatar-wrap">
+        <div class="character-avatar-glow"></div>
+        <div class="character-avatar">${getCharacterAvatar(type)}</div>
+      </div>
+      <p class="character-poem">${ch.poem}</p>
+      <div class="character-badges">
+        <span class="character-badge"><span class="badge-icon">✨</span>${ch.elementLabel}</span>
+        <span class="character-badge"><span class="badge-icon">${ch.animal}</span>${ch.animalName}</span>
+      </div>
+    </div>
+  `;
+}
+
+// 2. 名人同频画廊
+function renderFamousGallery(type) {
+  const ch = characterData[type];
+  if (!ch) return '';
+  return `
+    <div class="famous-section">
+      <h3>— 名人同频 · 你的灵魂与谁共鸣 —</h3>
+      <div class="famous-grid element-${ch.element}">
+        ${ch.famous.map(f => `
+          <div class="famous-card">
+            <div class="famous-avatar">${f.initial}</div>
+            <div class="famous-name">${f.name}</div>
+            <div class="famous-title">${f.title}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+// 3. 每日箴言（按类型 + 日期决定当日）
+function renderDailyWisdom(type) {
+  const ch = characterData[type];
+  if (!ch) return '';
+  // 5 条候选箴言（包含 ch.quote + 4 条按类型风格扩展）
+  const pool = [
+    ch.quote,
+    { text: `${ch.animal}低语：不必走快，但要看得远。`, author: `${type} · 每日启示` },
+    { text: `你最大的力量，常常藏在你最不像自己的那个瞬间里。`, author: `${type} · 今日一问` },
+    { text: `允许今天比昨天少走一步——停下来，也是前进。`, author: `${type} · 心灵速写` },
+    { text: `你不需要证明自己，你只需要成为自己。`, author: `${type} · 灵魂日记` }
+  ];
+  const today = new Date();
+  const dayIdx = (today.getFullYear() * 372 + (today.getMonth() + 1) * 31 + today.getDate()) % pool.length;
+  const q = pool[dayIdx];
+  return `
+    <div class="daily-wisdom element-${ch.element}" id="daily-wisdom-block">
+      <p class="daily-wisdom-quote">${q.text}</p>
+      <p class="daily-wisdom-author">— ${q.author} —</p>
+      <button class="daily-wisdom-refresh" onclick="refreshDailyWisdom('${type}')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+        换一句
+      </button>
+    </div>
+  `;
+}
+
+function refreshDailyWisdom(type) {
+  const block = document.getElementById('daily-wisdom-block');
+  if (block) {
+    block.style.opacity = '0';
+    setTimeout(() => {
+      block.outerHTML = renderDailyWisdom(type);
+    }, 250);
+  }
+}
+
+// 4. 缘分罗盘（SVG 环形图）
+function renderCompatRing(selfType) {
+  const types = Object.keys(typeData);
+  const W = 460, R_OUT = 210, R_IN = 130;
+  const cx = W / 2, cy = W / 2;
+  const total = types.length;
+  const slice = (Math.PI * 2) / total;
+
+  // 配色：匹配度分桶
+  const colorFor = (score) => {
+    if (score >= 85) return '#5b9a8b';
+    if (score >= 70) return '#8b7eb5';
+    if (score >= 55) return '#6b8db5';
+    return 'rgba(255,255,255,0.06)';
+  };
+
+  let sectors = '';
+  let labels = '';
+  types.forEach((t, i) => {
+    const start = -Math.PI / 2 + i * slice - slice / 2;
+    const end = start + slice;
+    const score = compatibilityMatrix[selfType]?.[t] || 0;
+    const isSelf = t === selfType;
+    const r1 = isSelf ? R_IN - 8 : R_IN;
+    const r2 = R_OUT;
+    const x1o = cx + r2 * Math.cos(start), y1o = cy + r2 * Math.sin(start);
+    const x2o = cx + r2 * Math.cos(end),   y2o = cy + r2 * Math.sin(end);
+    const x1i = cx + r1 * Math.cos(end),   y1i = cy + r1 * Math.sin(end);
+    const x2i = cx + r1 * Math.cos(start), y2i = cy + r1 * Math.sin(start);
+    const large = slice > Math.PI ? 1 : 0;
+    const d = `M ${x1o} ${y1o} A ${r2} ${r2} 0 ${large} 1 ${x2o} ${y2o} L ${x1i} ${y1i} A ${r1} ${r1} 0 ${large} 0 ${x2i} ${y2i} Z`;
+    const fill = isSelf ? '#c9a96e' : colorFor(score);
+    const opacity = score < 50 ? 0.35 : 0.85;
+    sectors += `<path class="compat-ring-sector" d="${d}" fill="${fill}" opacity="${opacity}" stroke="rgba(201,169,110,0.15)" stroke-width="1" onclick="showTypeDetail('${t}')"><title>${t} · ${typeData[t]?.name} · 匹配度 ${score}</title></path>`;
+    // 标签：放在外侧一点
+    const mid = -Math.PI / 2 + i * slice;
+    const labelR = R_OUT + 14;
+    const lx = cx + labelR * Math.cos(mid);
+    const ly = cy + labelR * Math.sin(mid);
+    const cls = isSelf ? 'compat-ring-text-self' : 'compat-ring-text';
+    labels += `<text class="${cls}" x="${lx}" y="${ly}">${t}</text>`;
+  });
+
+  return `
+    <div class="compat-ring-section">
+      <h3>— 缘分罗盘 · 你与所有类型的共鸣图谱 —</h3>
+      <p>点击扇区查看对应类型详情</p>
+      <svg class="compat-ring-svg" viewBox="0 0 ${W} ${W}" xmlns="http://www.w3.org/2000/svg">
+        ${sectors}
+        ${labels}
+        <text class="compat-ring-center-type" x="${cx}" y="${cy - 8}">${selfType}</text>
+        <text class="compat-ring-center-label" x="${cx}" y="${cy + 22}">YOUR TYPE</text>
+      </svg>
+    </div>
+  `;
+}
+
+// 5. 人格对决：选择对手类型，对比四个维度
+let currentBattleOpponent = null;
+function renderBattle(selfType) {
+  const types = Object.keys(typeData).filter(t => t !== selfType);
+  if (!currentBattleOpponent || !typeData[currentBattleOpponent]) {
+    currentBattleOpponent = types[0];
+  }
+  const opp = currentBattleOpponent;
+  const selfData = typeData[selfType];
+  const oppData = typeData[opp];
+  const selfCh = characterData[selfType];
+  const oppCh = characterData[opp];
+
+  // 用百分比模拟双方维度（基于类型本身）
+  const mockFor = (t) => ({
+    ei: t[0] === 'E' ? 70 + (hash(t) % 25) : 30 + (hash(t) % 20),
+    sn: t[1] === 'S' ? 65 + (hash(t+'1') % 25) : 35 + (hash(t+'1') % 20),
+    tf: t[2] === 'T' ? 60 + (hash(t+'2') % 30) : 40 + (hash(t+'2') % 25),
+    jp: t[3] === 'J' ? 65 + (hash(t+'3') % 25) : 35 + (hash(t+'3') % 25)
+  });
+  const a = mockFor(selfType);
+  const b = mockFor(opp);
+
+  const dimLabels = [
+    { key: 'ei', left: 'E', right: 'I' },
+    { key: 'sn', left: 'S', right: 'N' },
+    { key: 'tf', left: 'T', right: 'F' },
+    { key: 'jp', left: 'J', right: 'P' }
+  ];
+
+  return `
+    <div class="battle-section element-${selfCh.element}">
+      <h3>— 人格对决 · 让两种灵魂正面交锋 —</h3>
+      <p>比较你与任意对手类型在四个维度上的差异</p>
+      <div class="battle-arena">
+        <div class="battle-side is-self">
+          <div class="battle-avatar">${getCharacterAvatar(selfType)}</div>
+          <div class="battle-type">${selfType}</div>
+          <div class="battle-name">${selfData.name}</div>
+          <div class="battle-nick">「${selfData.nickname}」</div>
+        </div>
+        <div class="battle-vs">VS</div>
+        <div class="battle-side">
+          <div class="battle-avatar">${getCharacterAvatar(opp)}</div>
+          <div class="battle-type">${opp}</div>
+          <div class="battle-name">${oppData.name}</div>
+          <div class="battle-nick">「${oppData.nickname}」</div>
+        </div>
+      </div>
+      <div class="battle-picker">
+        ${types.map(t => `<button class="battle-pick-btn ${t === opp ? 'active' : ''}" onclick="selectBattleOpponent('${t}')">${t}</button>`).join('')}
+      </div>
+      <div class="battle-stats" id="battle-stats">
+        ${dimLabels.map(d => {
+          const av = a[d.key], bv = b[d.key];
+          return `
+            <div class="battle-stat-label">${d.left} / ${d.right}</div>
+            <div class="battle-bar">
+              <div class="battle-bar-a" style="width:${av}%"></div>
+              <div class="battle-bar-b" style="width:${bv}%"></div>
+            </div>
+            <div class="battle-stat-side-a" style="text-align:right">${av}% · ${d.left === 'E' ? '外向' : d.left === 'S' ? '感觉' : d.left === 'T' ? '思考' : '判断'}</div>
+          `;
+        }).join('')}
+        <div class="battle-stat-label"></div>
+        <div class="battle-stat-label" style="color:var(--gold)">匹配度</div>
+        <div class="battle-stat-side-a" style="text-align:right;color:var(--gold)">${compatibilityMatrix[selfType]?.[opp] || 0}%</div>
+      </div>
+    </div>
+  `;
+}
+
+function hash(s) {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0;
+  return Math.abs(h);
+}
+
+function selectBattleOpponent(t) {
+  currentBattleOpponent = t;
+  const arena = document.querySelector('.battle-section');
+  if (arena) {
+    arena.outerHTML = renderBattle(lastResultType || 'INTJ');
+  }
+}
+
+// 6. 人物志：16 型画廊（落地页&全部类型页用）
+function renderTypeGallery() {
+  const types = Object.keys(typeData);
+  return `
+    <div class="type-gallery-section">
+      <h3>人物志 · 十六种灵魂</h3>
+      <p>点击任意角色深入了解其完整画像</p>
+      <div class="type-gallery">
+        ${types.map(t => {
+          const ch = characterData[t];
+          return `
+            <div class="type-gallery-card element-${ch?.element || 'ether'}" onclick="showTypeDetail('${t}')">
+              <div class="type-gallery-avatar">${getCharacterAvatar(t)}</div>
+              <div class="type-gallery-code">${t}</div>
+              <div class="type-gallery-name">${typeData[t].name}</div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    </div>
+  `;
+}
+
+// 7. 字母含义解释
+function renderLetterMeanings(type) {
+  const letters = [
+    { l: 'E', opp: 'I', label: '外向', oppLabel: '内向', desc: '与外部世界互动获取能量 vs 向内思考恢复能量' },
+    { l: 'S', opp: 'N', label: '感觉', oppLabel: '直觉', desc: '关注具体现实 vs 关注模式与可能性' },
+    { l: 'T', opp: 'F', label: '思考', oppLabel: '情感', desc: '依靠逻辑判断 vs 依靠价值与情感判断' },
+    { l: 'J', opp: 'P', label: '判断', oppLabel: '感知', desc: '喜欢计划与确定 vs 喜欢灵活与开放' }
+  ];
+  return `
+    <div class="letter-meanings">
+      ${letters.map((x, i) => {
+        const isActive = type[i] === x.l;
+        return `
+          <div class="letter-meaning-card" style="${isActive ? 'border-color:var(--gold);background:rgba(201,169,110,0.08);' : ''}">
+            <div class="letter">${x.l}</div>
+            <div class="label">${x.label}</div>
+            <div class="opposite">vs ${x.opp} ${x.oppLabel}</div>
+            <div class="desc">${x.desc}</div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+}
+
+// 8. 成长建议
+function renderGrowthTips(type) {
+  const ch = characterData[type];
+  if (!ch) return '';
+  return `
+    <div class="growth-tips">
+      ${ch.growth.map((tip, i) => `
+        <div class="growth-tip">
+          <span class="growth-tip-num">0${i + 1}</span>
+          <span>${tip}</span>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+// 9. 字母组合洞察（你为什么是你）
+function renderComboInsight(type) {
+  const ch = characterData[type];
+  if (!ch) return '';
+  const [e, s, t, j] = type.split('');
+  const eMap = { E: '向外探寻', I: '向内沉淀' };
+  const sMap = { S: '扎根现实', N: '眺望远方' };
+  const tMap = { T: '以理裁断', F: '以心共鸣' };
+  const jMap = { J: '有序规划', P: '灵动应变' };
+  return `
+    <div class="combo-insight-grid">
+      <div class="combo-insight-card">
+        <h4>🧭 ${e} · 你的能量方向</h4>
+        <p>你${eMap[e]}，从${e === 'E' ? '与他人的连接' : '独处的时光'}中获取向前走的燃料。</p>
+      </div>
+      <div class="combo-insight-card">
+        <h4>🔭 ${s} · 你看世界的方式</h4>
+        <p>你习惯${sMap[s]}，${s === 'S' ? '更相信能触摸到的事实' : '更相信看得见的可能'}。</p>
+      </div>
+      <div class="combo-insight-card">
+        <h4>⚖️ ${t} · 你的判断依据</h4>
+        <p>你${tMap[t]}，做决定时${t === 'T' ? '以逻辑和一致为锚' : '以价值与关系为锚'}。</p>
+      </div>
+      <div class="combo-insight-card">
+        <h4>🗓️ ${j} · 你的生活方式</h4>
+        <p>你偏好${jMap[j]}，${j === 'J' ? '在结构里感到安心' : '在变化里感到自由'}。</p>
+      </div>
+    </div>
+  `;
+}
+
+let lastResultType = null;
 
 // ==================== APP STATE ====================
 let currentQuestionIndex = 0;
@@ -2023,6 +3494,8 @@ function calculateResults() {
 function renderResults(type, percentages) {
   const data = typeData[type];
   const container = document.getElementById('results-content');
+  lastResultType = type;
+  currentBattleOpponent = null;
 
   const dimNames = {
     ei: { left: 'E', right: 'I', leftFull: '外向 Extraversion', rightFull: '内向 Introversion' },
@@ -2059,6 +3532,10 @@ function renderResults(type, percentages) {
     <div class="result-type-nickname">「${data.nickname}」</div>
     <div class="result-version-badge">${VERSION_CONFIG[selectedVersion]?.name || ''} · ${questions.length} 题</div>
 
+    ${renderCharacterCard(type)}
+
+    ${renderDailyWisdom(type)}
+
     <div class="dimension-bars">
       <div class="radar-container">
         <div class="radar-wrapper">
@@ -2066,6 +3543,18 @@ function renderResults(type, percentages) {
         </div>
       </div>
       ${dimBarsHTML}
+    </div>
+
+    <div class="result-desc">
+      <h3>解读你的字母</h3>
+      <p style="font-size:13px;color:var(--text-dim);margin-bottom:8px;">点击下方四个字母，看看你为什么是你：</p>
+      ${renderLetterMeanings(type)}
+    </div>
+
+    <div class="result-desc">
+      <h3>为什么是你</h3>
+      <p style="font-size:13px;color:var(--text-dim);margin-bottom:8px;">每一个字母背后，都是一种看待世界的方式——</p>
+      ${renderComboInsight(type)}
     </div>
 
     <div class="result-cards">
@@ -2083,7 +3572,7 @@ function renderResults(type, percentages) {
       </div>
       <div class="result-card">
         <h3>成长空间</h3>
-        <ul>${data.weaknesses.map(s => `<li>${s}</li>`).join('')}</ul>
+        ${renderGrowthTips(type)}
       </div>
     </div>
 
@@ -2094,9 +3583,15 @@ function renderResults(type, percentages) {
       <p>${data.love}</p>
     </div>
 
-    <!-- Match percentages -->
+    ${renderFamousGallery(type)}
+
+    ${renderCompatRing(type)}
+
+    ${renderBattle(type)}
+
+    <!-- Match percentages (list view) -->
     <div class="match-section">
-      <h3>性格匹配度</h3>
+      <h3>性格匹配度 · 完整排名</h3>
       <div class="match-list" id="match-list">
         ${getCompatibility(type).map((m, idx) => `
           <div class="match-item ${m.type === type ? 'match-self' : ''}" onclick="showTypeDetail('${m.type}')">
@@ -2159,11 +3654,15 @@ function showTypeDetail(type) {
   const dimMap = { ei: 0, sn: 1, tf: 2, jp: 3 };
   const dimNames = ['E/I', 'S/N', 'T/F', 'J/P'];
   const letters = type.split('');
+  lastResultType = type;
 
   container.innerHTML = `
     <div class="result-type-badge" style="font-size:clamp(36px,8vw,60px)">${type}</div>
     <div class="result-type-name">${data.name}</div>
     <div class="result-type-nickname">「${data.nickname}」</div>
+
+    ${renderCharacterCard(type)}
+
     <div class="result-desc">
       <h3>关于 ${type} — ${data.name}</h3>
       <p>${data.desc}</p>
@@ -2172,14 +3671,19 @@ function showTypeDetail(type) {
       <h4 style="color:var(--gold);">优势</h4>
       <ul>${data.strengths.map(s => `<li>${s}</li>`).join('')}</ul>
       <h4 style="color:var(--gold);">成长空间</h4>
-      <ul>${data.weaknesses.map(s => `<li>${s}</li>`).join('')}</ul>
+      ${renderGrowthTips(type)}
       <h4 style="color:var(--gold);">适合职业</h4>
       <p>${data.career}</p>
       <h4 style="color:var(--gold);">感情观</h4>
       <p>${data.love}</p>
     </div>
-    <button class="btn btn-secondary btn-sm" onclick="startQuiz()">开始我的测试</button>
-    <button class="btn btn-secondary btn-sm" style="margin-left:12px" onclick="showAllTypes()">查看全部类型</button>
+
+    ${renderFamousGallery(type)}
+
+    <div style="text-align:center;margin-top:24px">
+      <button class="btn btn-primary" onclick="startQuiz()">开始我的测试</button>
+      <button class="btn btn-secondary btn-sm" style="margin-left:12px" onclick="showAllTypes()">查看全部类型</button>
+    </div>
   `;
   showSection('section-results');
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -2204,9 +3708,16 @@ function showAllTypes() {
 
   container.innerHTML = `
     <h2>十六种人格类型全览</h2>
-    <p style="text-align:center;color:var(--text-dim);margin-bottom:32px;font-size:14px;">点击展开查看每种人格类型的详细解读</p>
+    <p style="text-align:center;color:var(--text-dim);margin-bottom:32px;font-size:14px;">点击下方角色卡片深入了解，或展开下方列表查看详解</p>
+
+    ${renderTypeGallery()}
+
+    <h2 style="margin-top:48px">详细解读</h2>
+    <p style="text-align:center;color:var(--text-dim);margin-bottom:24px;font-size:14px;">点击展开查看每种人格类型的详细解读</p>
+
     ${types.map(t => {
       const d = typeData[t];
+      const ch = characterData[t];
       return `
         <div class="type-accordion" id="accordion-${t}">
           <div class="type-accordion-header" onclick="toggleAccordion('${t}')">
@@ -2216,13 +3727,14 @@ function showAllTypes() {
           </div>
           <div class="type-accordion-body">
             <div class="type-accordion-content">
+              <p style="color:var(--text);font-style:italic;">${ch?.poem || ''}</p>
               <p>${d.desc}</p>
               <h4>核心特质</h4>
               <p>${d.traits.map(tr => `<span style="display:inline-block;margin:4px 8px;padding:4px 12px;border:1px solid var(--border);border-radius:100px;font-size:13px;">${tr}</span>`).join('')}</p>
               <h4>优势</h4>
               <ul>${d.strengths.map(s => `<li>${s}</li>`).join('')}</ul>
               <h4>成长空间</h4>
-              <ul>${d.weaknesses.map(s => `<li>${s}</li>`).join('')}</ul>
+              ${renderGrowthTips(t)}
               <h4>适合职业</h4>
               <p>${d.career}</p>
               <h4>感情观</h4>
